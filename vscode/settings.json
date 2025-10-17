@@ -18,6 +18,9 @@
     
     // Theme: Osaka Jade
     "workbench.colorTheme": "Ocean Green: Dark",
+    "workbench.colorCustomizations": {
+        "editorRuler.foreground": "#1C2E31"
+    },
     "background.windowBackgrounds": [
         "../background/osaka-jade-bg.jpg" // change to your desired path
     ]
