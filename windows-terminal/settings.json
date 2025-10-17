@@ -5,8 +5,7 @@
     "copyFormatting": "none",
     "copyOnSelect": false,
     "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-    "keybindings": 
-    [
+    "keybindings": [
         {
             "id": "Terminal.CopyToClipboard",
             "keys": "ctrl+c"
@@ -20,30 +19,23 @@
             "keys": "alt+shift+d"
         }
     ],
-    "newTabMenu": 
-    [
+    "newTabMenu": [
         {
             "type": "remainingProfiles"
         }
     ],
-    "profiles": 
-    {
-        "defaults": 
-        {
+    "profiles": {
+        "defaults": {
             "backgroundImage": "desktopWallpaper",
             "backgroundImageOpacity": 0.1,
+            "colorScheme": "Osaka Jade",
+            "cursorShape": "filledBox",
             "font": {
                 "face": "Iosevka Nerd Font"
             },
-            "opacity": 100,
-            "useAcrylic": true,
-
-            // Theme: Osaka Jade
-            "background": "#111D1E",
-            "cursorColor": "#19D08A"
+            "useAcrylic": true
         },
-        "list": 
-        [
+        "list": [
             {
                 "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
@@ -51,7 +43,7 @@
                 "name": "Windows PowerShell"
             },
             {
-                "commandline": "%SystemRoot%\\System32\\cmd.exe",
+                "commandline": "%SystemRoot%\\System32\\cmd.exe /k \"C:\\Users\\phudit.t\\Application\\Development\\Clink\\clink.bat inject\"",
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
                 "hidden": false,
                 "name": "Command Prompt"
@@ -70,7 +62,31 @@
             }
         ]
     },
-    "schemes": [],
+    "schemes": [
+        {
+            "background": "#111D1E",
+            "black": "#23372B",
+            "blue": "#509475",
+            "brightBlack": "#53685B",
+            "brightBlue": "#ACD4CF",
+            "brightCyan": "#8CD3CB",
+            "brightGreen": "#63B07A",
+            "brightPurple": "#75BBB3",
+            "brightRed": "#DB9F9C",
+            "brightWhite": "#9EEBB3",
+            "brightYellow": "#E5C736",
+            "cursorColor": "#D7C995",
+            "cyan": "#2DD5B7",
+            "foreground": "#C1C497",
+            "green": "#549E6A",
+            "name": "Osaka Jade",
+            "purple": "#D2689C",
+            "red": "#FF5345",
+            "selectionBackground": "#C1C497",
+            "white": "#F6F5DD",
+            "yellow": "#459451"
+        }
+    ],
     "themes": [],
     "useAcrylicInTabRow": true
 }
