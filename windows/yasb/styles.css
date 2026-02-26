@@ -419,7 +419,7 @@ For more information about configuration options, please visit the Wiki https://
 .calendar .calendar-table,
 .calendar .calendar-table::item {
     background-color: rgba(17, 17, 27, 0);
-    color: rgba(162, 177, 196, 0.85);
+    color: var(--text1);
     font-family: "Segoe UI";
     margin: 0;
     padding: 0;
@@ -428,7 +428,7 @@ For more information about configuration options, please visit the Wiki https://
 }
 .calendar .calendar-table::item:selected {
     color: #000000;
-    background-color: var(--blue);
+    background-color: var(--text2);
     border-radius: 10px;
 }
 .calendar .day-label {
@@ -441,7 +441,7 @@ For more information about configuration options, please visit the Wiki https://
 .calendar .holiday-label {
     font-family: "Segoe UI";
     font-size: 16px;
-    color: #fff;
+    color: var(--text1);
     font-weight: 700;
     min-width: 180px;
     max-width: 180px;
@@ -462,7 +462,7 @@ For more information about configuration options, please visit the Wiki https://
 .calendar .date-label {
     font-size: 88px;
     font-weight: 900;
-    color: rgb(255, 255, 255);
+    color: var(--text1);
     margin-top: -20px;
 }
 
