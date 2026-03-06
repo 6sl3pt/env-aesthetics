@@ -1,1 +1,12 @@
-/home/phudit-t/.config/omarchy/current/theme/neovim.lua
+return {
+  {
+    "ribru17/bamboo.nvim",
+    priority = 1000,
+  },
+  {
+    "LazyVim/LazyVim",
+    opt = {
+      colorscheme = "bamboo",
+    },
+  },
+}
