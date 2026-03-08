@@ -1,0 +1,37 @@
+# custom alias
+alias n='nvim'
+alias vi='nvim'
+
+alias dbs='devbox shell'
+
+alias ls='eza -lh --group-directories-first --icons=auto'
+alias lsa='ls -a'
+alias lt='eza --tree --level=2 --long --icons --git'
+alias lta='lt -a'
+
+# shells
+if command -v starship &>/dev/null; then
+  eval "$(starship init bash)"
+fi
+
+# tmux - auto start session
+if command -v tmux &>/dev/null && [ -z "$TMUX" ]; then
+  tmux new-session -d -s dev -n editor 'nvim'
+  tmux attach -t dev
+fi
+
+# tmux - handle devbox integration
+if [ -n "$TMUX" ] && [ -n "$DEVBOX_SHELL_ENABLED" ]; then
+  if [ -z "$TMUX_DEVBOX_ORIGINAL_WINDOW" ]; then
+    export TMUX_DEVBOX_ORIGINAL_WINDOW=$(tmux display-message -p '#W')
+  fi
+
+  tmux rename-window "devbox"
+
+  trap '
+    current=$(tmux display-message -p "#W" 2>/dev/null)
+    if [ "$current" = '"devbox"' ]; then
+      tmux rename-window "$TMUX_DEVBOX_ORIGINAL_WINDOW"
+    fi
+  ' EXIT
+fi
