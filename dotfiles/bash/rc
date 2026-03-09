@@ -16,7 +16,7 @@ fi
 
 # tmux - auto start session
 if command -v tmux &>/dev/null && [ -z "$TMUX" ]; then
-  tmux new-session -d -s dev -n editor 'nvim'
+  tmux new-session -d -s dev
   tmux attach -t dev
 fi
 
