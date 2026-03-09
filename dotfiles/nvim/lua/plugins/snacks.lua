@@ -1,9 +1,7 @@
 return {
   "folke/snacks.nvim",
   opts = {
-    scroll = {
-      enabled = false, -- Disable scrolling animations
-    },
+    scroll = { enabled = false },
     indent = { enabled = true },
   },
 }
