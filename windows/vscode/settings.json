@@ -2,17 +2,7 @@
     "files.autoSave": "onFocusChange",
     "editor.rulers": [80, 120],
     "editor.lineNumbers": "relative",
-    "editor.fontFamily": "Consolas, 'Courier New', monospace, 'Iosevka Nerd Font'",
-    "terminal.integrated.profiles.windows": {
-        "Command Prompt": {
-            "path": "C:/Windows/system32/cmd.exe",
-            "args": [
-                "/k",
-                "C:/Users/PhuditThawornsusin/DevTools/clink/clink.bat",
-                "inject"
-            ]
-        }
-    },
+    "editor.fontFamily": "CaskaydiaMono Nerd Font'",
     "terminal.integrated.defaultProfile.windows": "Command Prompt",
     "vim.useSystemClipboard": true,
     
