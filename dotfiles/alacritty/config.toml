@@ -55,6 +55,9 @@ bold = { family = "CaskaydiaMono Nerd Font", style = "Bold" }
 italic = { family = "CaskaydiaMono Nerd Font", style = "Italic" }
 size = 9
 
+[font.glyph_offset]
+y = 1
+
 [window]
 padding.x = 14
 padding.y = 14
