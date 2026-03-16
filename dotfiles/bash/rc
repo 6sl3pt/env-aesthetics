@@ -1,3 +1,6 @@
+# theme
+export TERM=xterm-256color
+
 # custom alias
 alias n='nvim'
 alias vi='nvim'
