@@ -1,0 +1,8 @@
+curl
+ca-certificates
+gnupg
+eza
+fd-find
+ripgrep
+jq
+wl-clipboard

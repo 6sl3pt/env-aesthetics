@@ -1,41 +1,31 @@
 #!/bin/bash
 
-echo "--- Starting Base Installation ---"
+NC='\033[0m'
+CYAN='\033[0;36m'
 
-MISSING_PKGS=$(dpkg -l $(cat base.packages) 2>&1 | grep "no packages found" | awk '{print $6}')
+DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-if [ -n "$MISSING_PKGS" ]; then
-  echo "Installing missing: $MISSING_PKGS"
-  sudo apt update && sudo apt install -y $(cat base.packages)
-else
-  echo "System is already up to date!"
-fi
+source "$DOTFILES_DIR/scripts/installers.sh"
 
-echo -e "\n--- Optional Curl Installations ---"
+mkdir -p "$HOME/.local/bin"
+export PATH="$HOME/.local/bin:$PATH"
 
-if [ -f "curl.packages" ]; then
-  while read -r name url; do
-    [[ -z "$name" || "$name" =~ ^# ]] && continue
+echo -e "${CYAN}--- Update & Upgrade Packages ---${NC}"
 
-    if command -v "$name" &>/dev/null; then
-      echo -e "[\033[1;34mSKIP\033[0m] $name is already installed."
-      continue
-    fi
+sudo apt update && sudo apt upgrade -y
 
-    echo -e "\nPackage: \033[1;32m$name\033[0m"
-    echo "Source: $url"
+echo -e "${CYAN}\n--- Starting Base Package Installation ---${NC}"
 
-    read -p "Would you like to install $name? (y/N): " choice
+install_base
 
-    if [[ "$choice" =~ ^[Yy]$ ]]; then
-      echo "Installing $name..."
-      curl -fsSL "$url" | sh
-    else
-      echo "Skipping $name."
-    fi
-  done <"curl.packages"
-else
-  echo "curl.packages not found."
-fi
+echo -e "${CYAN}\n--- Starting Package Installations ---${NC}"
 
-echo -e "\nSetup complete!"
+install_binary "nvim" install_nvim
+
+install_binary "starship" "curl -sS https://starship.rs/install.sh | sh -s -- -y"
+install_binary "devbox" "curl -fsSL https://get.jetify.com/devbox | bash -s -- -y"
+install_binary "opencode" "curl -fsSL https://opencode.ai/install | bash -s -- -y"
+
+install_binary "docker" install_docker
+
+echo -e "${CYAN}\n--- Setup Complete ---${NC}"
