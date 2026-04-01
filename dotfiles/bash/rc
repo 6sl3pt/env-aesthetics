@@ -1,5 +1,11 @@
+# PATH
+export PATH=$HOME/.local/bin:$PATH
+export PATH=$PATH:/opt/nvim-linux-x86_64/bin
+export PATH=$PATH:$HOME/.opencode/bin
+
 # theme
 export TERM=xterm-256color
+export COLORTERM=truecolor
 
 # custom alias
 alias n='nvim'
@@ -66,3 +72,67 @@ if [ -n "$TMUX" ] && [ -n "$DEVBOX_SHELL_ENABLED" ]; then
     fi
   ' EXIT
 fi
+
+# Opencode - OpenAI compatible API configs
+export AI_BASE_URL=
+export AI_API_KEY=
+
+ai() {
+  NC='\033[0m'
+  RED='\033[0;31m'
+  GREEN='\033[0;32m'
+
+  if [ -z "$AI_BASE_URL" ]; then
+    echo -e "${RED}✘ ERROR: AI_BASE_URL is not set${NC}"
+    return 1
+  fi
+
+  if [ -z "$AI_API_KEY" ]; then
+    echo -e "${RED}✘ ERROR: AI_API_KEY is not set${NC}"
+    return 1
+  fi
+
+  case "$1" in
+  list)
+    curl -s "$AI_BASE_URL/models" \
+      -H "Authorization: Bearer $AI_API_KEY" |
+      jq -r '.data[].id' |
+      sed 's/^/• /'
+    ;;
+
+  ping)
+    if [ -z "$2" ]; then
+      echo "Usage: model ping <model-id>"
+      return 1
+    fi
+
+    response=$(curl -s -w "%{http_code}" "$AI_BASE_URL/chat/completions" \
+      -H "Authorization: Bearer $AI_API_KEY" \
+      -H "Content-Type: application/json" \
+      -d "{
+          \"model\": \"$2\",
+          \"messages\": [
+            {\"role\": \"user\", \"content\": \"Hello\"}
+          ],
+          \"max_tokens\": 10000,
+          \"temperature\": 0.7
+        }")
+
+    http_status="${response: -3}"
+    body="${response:0:-3}"
+
+    if [ "$http_status" -ge 400 ]; then
+      echo -e "${RED}✘ HTTP Error $http_status${NC}"
+    fi
+
+    content=$(echo "$body" | jq -r '.choices[0].message.content // "empty"' 2>/dev/null)
+    echo -e "${GREEN}✓ $content${NC}"
+    ;;
+
+  *)
+    echo "Usage:"
+    echo "  ai list"
+    echo "  ai ping <model-id>"
+    ;;
+  esac
+}
