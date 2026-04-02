@@ -59,17 +59,24 @@ fi
 
 # tmux - handle devbox integration
 if [ -n "$TMUX" ] && [ -n "$DEVBOX_SHELL_ENABLED" ]; then
-  if [ -z "$TMUX_DEVBOX_ORIGINAL_WINDOW" ]; then
-    export TMUX_DEVBOX_ORIGINAL_WINDOW=$(tmux display-message -p '#W')
-  fi
+  original_name=$(tmux display-message -p '#W')
 
-  tmux rename-window "devbox"
+  case "$original_name" in
+  devbox:*) ;;
+  *)
+    tmux rename-window "devbox:$original_name"
+    ;;
+  esac
 
   trap '
     current=$(tmux display-message -p "#W" 2>/dev/null)
-    if [ "$current" = '"devbox"' ]; then
-      tmux rename-window "$TMUX_DEVBOX_ORIGINAL_WINDOW"
-    fi
+
+    case "$current" in
+      devbox:*)
+        new_name="${current#devbox:}"
+        tmux rename-window "$new_name"
+        ;;
+    esac
   ' EXIT
 fi
 
