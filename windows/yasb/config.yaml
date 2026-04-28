@@ -47,6 +47,7 @@ bars:
         - "microphone"
         - "volume"
         - "cpu"
+        - "memory"
         - "battery"
         - "power_menu"
 widgets:
@@ -190,6 +191,39 @@ widgets:
       histogram_num_columns: 8
       callbacks:
         on_left: "toggle_menu"
+      label_shadow:
+        enabled: true
+        color: "black"
+        radius: 3
+        offset: [1, 1]
+      menu:
+        enabled: true
+        show_graph: true
+        show_graph_grid: true
+        graph_history_size: 60
+
+  memory:
+    type: "yasb.memory.MemoryWidget"
+    options:
+      label: "<span>\uefc5</span> {virtual_mem_free}/{virtual_mem_total}"
+      label_alt: "<span>\uefc5</span> VIRT: {virtual_mem_percent}% SWAP: {swap_mem_percent}%"
+      update_interval: 5000
+      callbacks:
+        on_left: "toggle_menu"
+      memory_thresholds:
+        low: 25
+        medium: 50
+        high: 90
+      histogram_icons:
+        - "\u2581" # 0%
+        - "\u2581" # 10%
+        - "\u2582" # 20%
+        - "\u2583" # 30%
+        - "\u2584" # 40%
+        - "\u2585" # 50%
+        - "\u2586" # 60%
+        - "\u2587" # 70%
+        - "\u2588" # 80%+
       label_shadow:
         enabled: true
         color: "black"

@@ -497,6 +497,7 @@ For more information about configuration options, please visit the Wiki https://
   color: var(--text1);
 }
 
+/* CPU */
 .cpu-widget {
   padding: 0 8px;
 }
@@ -590,6 +591,94 @@ For more information about configuration options, please visit the Wiki https://
   padding: 6px 4px 2px 4px;
 }
 .cpu-popup .stats .stat-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text1);
+  font-family: "Segoe UI";
+  padding: 0 4px 12px 4px;
+}
+
+.memory-widget {
+  padding: 0 8px;
+  color: var(--text1);
+}
+.memory-widget .widget-container .label.status-critical {
+  color: #f38ba8; /* Red */
+}
+
+/* Memory - Progress bar customization */
+.memory-widget .progress-circle {
+  margin-right: 6px;
+}
+
+/* Memory - Menu */
+.memory-popup {
+  background-color: var(--background-color);
+  min-width: 400px;
+}
+
+.memory-popup .header {
+  background: transparent;
+  padding: 12px 16px;
+}
+.memory-popup .header .text {
+  font-size: 16px;
+  font-family: "Segoe UI";
+  color: var(--text1);
+}
+.memory-popup .header .pin-btn {
+  font-size: 14px;
+  background: transparent;
+  font-family: "Segoe Fluent Icons";
+  border: none;
+  padding: 6px;
+  color: var(--text1);
+}
+.memory-popup .header .pin-btn:hover {
+  color: var(--text1);
+}
+.memory-popup .header .pin-btn.pinned {
+  color: var(--text1);
+}
+
+/* Memory - Graph area */
+.memory-popup .graph-container {
+  background: transparent;
+  min-height: 64px;
+}
+.memory-popup .memory-graph {
+  color: var(--text2); /* <-- set the graph line/fill color */
+}
+.memory-popup .memory-graph-grid {
+  color: rgba(80, 148, 117, 0.1); /* set the grid line color */
+}
+.memory-popup .graph-title {
+  font-size: 12px;
+  color: var(--text1);
+  font-family: "Segoe UI";
+  padding: 0px 0px 4px 14px;
+}
+
+/* Memory - Stats grid */
+.memory-popup .stats {
+  background: transparent;
+  padding: 16px;
+}
+.memory-popup .stats .stat-item {
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(80, 148, 117, 0.2);
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin: 8px;
+}
+.memory-popup .stats .stat-label {
+  font-size: 13px;
+  color: var(--text1);
+  font-family: "Segoe UI";
+  font-weight: 400;
+  padding: 6px 4px 2px 4px;
+}
+.memory-popup .stats .stat-value {
   font-size: 20px;
   font-weight: 700;
   color: var(--text1);
