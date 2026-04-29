@@ -42,6 +42,7 @@ bars:
       right:
         - "notifications"
         - "glazewm_tiling_direction"
+        - "vpn"
         - "wifi"
         - "language"
         - "microphone"
@@ -234,6 +235,20 @@ widgets:
         show_graph: true
         show_graph_grid: true
         graph_history_size: 60
+
+  vpn:
+    type: "yasb.custom.CustomWidget"
+    options:
+      label: "{data[icon]}<span>\uf48b</span>"
+      tooltip: true
+      tooltip_label: "VPN {data[connection]}"
+      class_name: "vpn-widget"
+      exec_options:
+        run_cmd: "%USERPROFILE%\\.config\\yasb\\scripts\\vpn.cmd"
+        run_interval: 5000
+        return_format: "json"
+      callbacks:
+        on_left: "exec cmd /c \"C:\\Program Files (x86)\\Cisco\\Cisco Secure Client\\UI\\csc_ui.exe\""
 
   wifi:
     type: "yasb.wifi.WifiWidget"

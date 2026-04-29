@@ -686,6 +686,15 @@ For more information about configuration options, please visit the Wiki https://
   padding: 0 4px 12px 4px;
 }
 
+/* VPN */
+.vpn-widget {
+  padding-right: 0;
+}
+
+/* WiFi */
+.wifi-widget {
+  padding-left: 0;
+}
 .wifi-menu {
   font-family: "Segoe UI";
   background-color: rgba(17, 28, 24, 0.3);
