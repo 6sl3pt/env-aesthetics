@@ -192,6 +192,7 @@ widgets:
       histogram_num_columns: 8
       callbacks:
         on_left: "toggle_menu"
+        on_right: "toggle_label"
       label_shadow:
         enabled: true
         color: "black"
@@ -206,11 +207,12 @@ widgets:
   memory:
     type: "yasb.memory.MemoryWidget"
     options:
-      label: "<span>\uefc5</span> {virtual_mem_free}/{virtual_mem_total}"
+      label: "<span>\uefc5</span> {virtual_mem_used}/{virtual_mem_total}"
       label_alt: "<span>\uefc5</span> VIRT: {virtual_mem_percent}% SWAP: {swap_mem_percent}%"
       update_interval: 5000
       callbacks:
         on_left: "toggle_menu"
+        on_right: "toggle_label"
       memory_thresholds:
         low: 25
         medium: 50
@@ -291,7 +293,7 @@ widgets:
   language:
     type: "yasb.language.LanguageWidget"
     options:
-      label: "<span>\udb80\udf0c</span> {lang[language_code]}-{lang[country_code]}"
+      label: "<span>\udb80\udf0c</span> {lang[language_code]}"
       label_alt: "{lang[full_name]}"
       update_interval: 1
       callbacks:

@@ -14,6 +14,8 @@ For more information about configuration options, please visit the Wiki https://
   --text4: #7f849c;
   --bg-color1: #111c18;
   --bg-color2: #333333;
+  --bar-icon-fontsize: 14px;
+  --bar-label-fontsize: 12px;
 }
 * {
   font-size: 12px;
@@ -35,6 +37,9 @@ For more information about configuration options, please visit the Wiki https://
   font-family: "Segoe UI";
   font-weight: 600;
   margin-top: 4px;
+}
+.container-center {
+  max-width: 200px;
 }
 /* Global context menu style */
 .context-menu,
@@ -121,9 +126,6 @@ For more information about configuration options, please visit the Wiki https://
 }
 .power-menu-widget .label {
   color: var(--text1);
-  font-size: 13px;
-}
-.power-menu-popup {
   background-color: transparent;
 }
 .power-menu-popup .button {
@@ -179,13 +181,13 @@ For more information about configuration options, please visit the Wiki https://
   padding: 0 6px 0 6px;
 }
 .microphone-widget .icon {
-  font-size: 18px;
+  font-size: var(--bar-icon-fontsize);
 }
 .microphone-widget .icon {
   color: var(--text1);
 }
 .volume-widget .icon {
-  font-size: 17px;
+  font-size: var(--bar-icon-fontsize);
   color: var(--text1);
   margin: 0px 2px 0 0;
 }
@@ -403,7 +405,7 @@ For more information about configuration options, please visit the Wiki https://
   padding: 0 0px 0 4px;
 }
 .notification-widget .icon {
-  font-size: 14px;
+  font-size: var(--bar-icon-fontsize);
 }
 .notification-widget .icon.new-notification {
   color: var(--text1);
@@ -468,11 +470,11 @@ For more information about configuration options, please visit the Wiki https://
   padding: 0 8px;
 }
 .battery-widget .label {
-  font-size: 13px;
+  font-size: var(--bar-label-fontsize);
   color: var(--text1);
 }
 .battery-widget .icon {
-  font-size: 14px;
+  font-size: var(--bar-icon-fontsize);
   margin-right: 6px;
 }
 /* Critical - red */
@@ -502,11 +504,13 @@ For more information about configuration options, please visit the Wiki https://
   padding: 0 8px;
 }
 .cpu-widget .widget-container .label {
-  font-size: 13px;
+  font-size: var(--bar-label-fontsize);
   color: var(--text1);
+  min-width: 42px;
+  max-width: 42px;
 }
 .cpu-widget .widget-container .icon {
-  font-size: 14px;
+  font-size: var(--bar-icon-fontsize);
   color: var(--text1);
 }
 .cpu-widget .widget-container .label.status-low,
@@ -584,7 +588,7 @@ For more information about configuration options, please visit the Wiki https://
   margin: 8px;
 }
 .cpu-popup .stats .stat-label {
-  font-size: 13px;
+  font-size: var(--bar-label-fontsize);
   color: var(--text1);
   font-family: "Segoe UI";
   font-weight: 400;
@@ -602,8 +606,17 @@ For more information about configuration options, please visit the Wiki https://
   padding: 0 8px;
   color: var(--text1);
 }
+.memory-widget .widget-container .label {
+  font-size: var(--bar-label-fontsize);
+  min-width: 75px;
+  max-width: 75px;
+  text-align: right;
+}
 .memory-widget .widget-container .label.status-critical {
   color: #f38ba8; /* Red */
+}
+.memory-widget .widget-container .icon {
+  font-size: var(--bar-icon-fontsize);
 }
 
 /* Memory - Progress bar customization */
@@ -690,10 +703,19 @@ For more information about configuration options, please visit the Wiki https://
 .vpn-widget {
   padding-right: 0;
 }
+.vpn-widget .widget-container .icon {
+  font-size: var(--bar-icon-fontsize)
+}
 
 /* WiFi */
 .wifi-widget {
   padding-left: 0;
+}
+.wifi-widget .widget-container .label {
+  font-size: var(--bar-label-fontsize)
+}
+.wifi-widget .widget-container .icon {
+  font-size: var(--bar-icon-fontsize)
 }
 .wifi-menu {
   font-family: "Segoe UI";
@@ -813,6 +835,9 @@ For more information about configuration options, please visit the Wiki https://
   color: var(--text1);
 }
 
+.language-widget .icon {
+  font-size: var(--bar-icon-fontsize)
+}
 .language-menu {
   background-color: rgba(17, 28, 24, 0.7);
   min-width: 300px;
