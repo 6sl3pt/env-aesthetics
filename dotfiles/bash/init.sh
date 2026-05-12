@@ -2,7 +2,7 @@
 
 __load_bash_config() {
   local conf_root="$HOME/.config/bash"
-  local modules=("aliases" "secrets" "themes" "functions")
+  local modules=("aliases" "variables" "functions")
   local module module_path file
 
   for module in "${modules[@]}"; do

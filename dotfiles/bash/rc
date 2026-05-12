@@ -1,7 +1,9 @@
 # PATH
-export PATH=$HOME/.local/bin:$PATH
+export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:/opt/nvim-linux-x86_64/bin
 export PATH=$PATH:$HOME/.opencode/bin
+export PATH=$PATH:$HOME/.cargo/bin
+. "$HOME/.cargo/env"
 
 # load init and custom modulars
 [ -f ~/.config/bash/init.sh ] && source ~/.config/bash/init.sh
@@ -17,30 +19,15 @@ fi
 
 # tmux - auto start session
 if command -v tmux &>/dev/null && [ -z "$TMUX" ]; then
-  tmux new-session -d -s dev
-  tmux attach -t dev
+  tmux has-session -t dev 2>/dev/null
+
+  if [ $? != 0 ]; then
+    tmux new-session -d -s dev -n editor 'nvim; bash'
+
+    if command -v spotify_player &>/dev/null; then
+      tmux new-window -t dev:9 -n spotify 'spotify_player; bash'
+    fi
+  fi
+
+  tmux attach-session -t dev
 fi
-
-# tmux - handle devbox integration
-if [ -n "$TMUX" ] && [ -n "$DEVBOX_SHELL_ENABLED" ]; then
-  original_name=$(tmux display-message -p '#W')
-
-  case "$original_name" in
-  devbox:*) ;;
-  *)
-    tmux rename-window "devbox:$original_name"
-    ;;
-  esac
-
-  trap '
-    current=$(tmux display-message -p "#W" 2>/dev/null)
-
-    case "$current" in
-      devbox:*)
-        new_name="${current#devbox:}"
-        tmux rename-window "$new_name"
-        ;;
-    esac
-  ' EXIT
-fi
-
