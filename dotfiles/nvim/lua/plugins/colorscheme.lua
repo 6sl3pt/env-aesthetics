@@ -25,12 +25,12 @@ return {
       vim.api.nvim_set_hl(0, "SnacksDashboardTerminal", { fg = "#53685b" })
 
       vim.api.nvim_set_hl(0, "Directory", { fg = "#63b07a" })
-      vim.api.nvim_set_hl(0, "FloatTitle", { fg = "#FF5345" })
+      vim.api.nvim_set_hl(0, "FloatTitle", { fg = "#D2689C" })
       vim.api.nvim_set_hl(0, "SnacksPickerBorder", { fg = "#509475", bg = "none", nocombine = true })
       vim.api.nvim_set_hl(0, "SnacksPickerDir", { fg = "#53685b" })
       vim.api.nvim_set_hl(0, "SnacksPickerDirectory", { fg = "#63b07a" })
-      vim.api.nvim_set_hl(0, "SnacksPickerPrompt", { fg = "#FF5345" })
-      vim.api.nvim_set_hl(0, "SnacksPickerTitle", { fg = "#FF5345" })
+      vim.api.nvim_set_hl(0, "SnacksPickerPrompt", { fg = "#D2689C" })
+      vim.api.nvim_set_hl(0, "SnacksPickerTitle", { fg = "#D2689C" })
 
       vim.api.nvim_set_hl(0, "MiniIconsJade", { fg = "#63b07a" })
     end,

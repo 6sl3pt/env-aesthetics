@@ -2,10 +2,16 @@ return {
   {
     "stevearc/conform.nvim",
     opts = {
+      formatters_by_ft = {
+        toml = { "taplo" },
+      },
       formatters = {
         prettier = {
           args = function(ctx)
-            local args = { "$FILENAME" }
+            local args = {
+              "--stdin-filepath",
+              "$FILENAME",
+            }
 
             local config_files = {
               ".prettierrc",
