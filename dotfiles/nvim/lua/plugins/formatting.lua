@@ -4,8 +4,12 @@ return {
     opts = {
       formatters_by_ft = {
         toml = { "taplo" },
+        markdown = { "markdownlint-cli2" },
       },
       formatters = {
+        ["markdownlint-cli2"] = {
+          prepend_args = { "--fix" },
+        },
         prettier = {
           args = function(ctx)
             local args = {
