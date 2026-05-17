@@ -3,6 +3,8 @@
 -- Add any additional options here
 vim.o.termguicolors = true
 
+vim.opt.conceallevel = 0
+
 vim.opt.relativenumber = false
 vim.opt.wrap = true
 

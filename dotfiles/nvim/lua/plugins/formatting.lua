@@ -42,6 +42,7 @@ return {
                 "--trailing-comma",
                 "all",
                 "--single-quote",
+                "--no-tabs"
               })
             end
 
