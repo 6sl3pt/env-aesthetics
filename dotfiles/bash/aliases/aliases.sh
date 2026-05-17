@@ -11,6 +11,8 @@ alias t=talosctl
 alias k=kubectl
 alias kgp='kubectl get pods -A'
 
+alias docker='podman'
+
 alias thai='curl -s https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt | grep -P "\p{Thai}"'
 
 alias spotify='spotify_player'
