@@ -8,12 +8,21 @@ For more information about configuration options, please visit the Wiki https://
   --yellow: #ffd16d;
   --blue: #448fff;
   --lavender: #b4befe;
-  --text1: #c1c497;
-  --text2: #509475;
   --text3: #9399b2;
   --text4: #7f849c;
-  --bg-color1: #111c18;
-  --bg-color2: #333333;
+
+  /* Themes - Osaka Jade */
+  /* --text1: #c1c497; */
+  /* --text2: #509475; */
+  /* --bg-color1: #111c18; */
+  /* --bg-color2: #333333; */
+
+  /* Themes - Gruvbox Material */
+  --text1: #d4be98;
+  --text2: #7daea3;
+  --bg-color1: #32302f;
+  --bg-color2: #665c54;
+
   --bar-icon-fontsize: 14px;
   --bar-label-fontsize: 12px;
 }
@@ -21,7 +30,7 @@ For more information about configuration options, please visit the Wiki https://
   font-size: 12px;
   color: var(--text1);
   font-weight: 600;
-  font-family: "CaskaydiaMono NFP";
+  font-family: 'CaskaydiaMono NFP';
 }
 .yasb-bar {
   background-color: var(--bg-color1);
@@ -34,7 +43,7 @@ For more information about configuration options, please visit the Wiki https://
   color: var(--text1);
   padding: 5px 10px;
   font-size: 12px;
-  font-family: "Segoe UI";
+  font-family: 'Segoe UI';
   font-weight: 600;
   margin-top: 4px;
 }
@@ -47,7 +56,7 @@ For more information about configuration options, please visit the Wiki https://
   background-color: var(--bg-color1);
   border: none;
   padding: 4px 0px;
-  font-family: "Segoe UI";
+  font-family: 'Segoe UI';
   font-size: 12px;
   color: var(--text1);
 }
@@ -87,7 +96,7 @@ For more information about configuration options, please visit the Wiki https://
   font-size: 12px;
   margin: 0;
   color: var(--text1);
-  font-family: "Segoe UI";
+  font-family: 'Segoe UI';
 }
 .context-menu .submenu::item:disabled {
   margin: 0;
@@ -252,7 +261,7 @@ For more information about configuration options, please visit the Wiki https://
   color: #7a7f8b;
   padding: 0 4px;
   margin: 0;
-  font-family: "JetBrainsMono NFP";
+  font-family: 'JetBrainsMono NFP';
   font-weight: 400;
   font-size: 20px;
 }
@@ -282,7 +291,7 @@ For more information about configuration options, please visit the Wiki https://
   font-size: 14px;
   font-weight: 600;
   margin-left: 10px;
-  font-family: "Segoe UI";
+  font-family: 'Segoe UI';
 }
 .media-menu .artist {
   font-size: 13px;
@@ -316,7 +325,7 @@ For more information about configuration options, please visit the Wiki https://
 }
 
 .media-menu .btn {
-  font-family: "Segoe Fluent Icons";
+  font-family: 'Segoe Fluent Icons';
   font-size: 14px;
   font-weight: 400;
   margin: 10px 2px 0px 2px;
@@ -345,7 +354,7 @@ For more information about configuration options, please visit the Wiki https://
 
 .media-menu .playback-time {
   font-size: 13px;
-  font-family: "Segoe UI";
+  font-family: 'Segoe UI';
   color: #7f849c;
   margin-top: 20px;
   min-width: 100px;
@@ -389,7 +398,7 @@ For more information about configuration options, please visit the Wiki https://
 .home-menu .menu-item {
   padding: 8px 48px 9px 16px;
   font-size: 12px;
-  font-family: "Segoe UI";
+  font-family: 'Segoe UI';
   color: var(--text1);
   font-weight: 600;
 }
@@ -420,7 +429,7 @@ For more information about configuration options, please visit the Wiki https://
 .calendar .calendar-table::item {
   background-color: rgba(17, 17, 27, 0);
   color: var(--text1);
-  font-family: "Segoe UI";
+  font-family: 'Segoe UI';
   margin: 0;
   padding: 0;
   border: none;
@@ -439,7 +448,7 @@ For more information about configuration options, please visit the Wiki https://
 .calendar .date-label,
 .calendar .week-label,
 .calendar .holiday-label {
-  font-family: "Segoe UI";
+  font-family: 'Segoe UI';
   font-size: 16px;
   color: var(--text1);
   font-weight: 700;
@@ -537,13 +546,13 @@ For more information about configuration options, please visit the Wiki https://
 }
 .cpu-popup .header .text {
   font-size: 16px;
-  font-family: "Segoe UI";
+  font-family: 'Segoe UI';
   color: var(--text1);
 }
 .cpu-popup .header .pin-btn {
   font-size: 14px;
   background: transparent;
-  font-family: "Segoe Fluent Icons";
+  font-family: 'Segoe Fluent Icons';
   border: none;
   padding: 6px;
   color: var(--text1);
@@ -571,7 +580,7 @@ For more information about configuration options, please visit the Wiki https://
   font-size: 12px;
   color: var(--text1);
 
-  font-family: "Segoe UI";
+  font-family: 'Segoe UI';
   padding: 0px 0px 4px 14px;
 }
 
@@ -590,7 +599,7 @@ For more information about configuration options, please visit the Wiki https://
 .cpu-popup .stats .stat-label {
   font-size: var(--bar-label-fontsize);
   color: var(--text1);
-  font-family: "Segoe UI";
+  font-family: 'Segoe UI';
   font-weight: 400;
   padding: 6px 4px 2px 4px;
 }
@@ -598,7 +607,7 @@ For more information about configuration options, please visit the Wiki https://
   font-size: 20px;
   font-weight: 700;
   color: var(--text1);
-  font-family: "Segoe UI";
+  font-family: 'Segoe UI';
   padding: 0 4px 12px 4px;
 }
 
@@ -636,13 +645,13 @@ For more information about configuration options, please visit the Wiki https://
 }
 .memory-popup .header .text {
   font-size: 16px;
-  font-family: "Segoe UI";
+  font-family: 'Segoe UI';
   color: var(--text1);
 }
 .memory-popup .header .pin-btn {
   font-size: 14px;
   background: transparent;
-  font-family: "Segoe Fluent Icons";
+  font-family: 'Segoe Fluent Icons';
   border: none;
   padding: 6px;
   color: var(--text1);
@@ -668,7 +677,7 @@ For more information about configuration options, please visit the Wiki https://
 .memory-popup .graph-title {
   font-size: 12px;
   color: var(--text1);
-  font-family: "Segoe UI";
+  font-family: 'Segoe UI';
   padding: 0px 0px 4px 14px;
 }
 
@@ -687,7 +696,7 @@ For more information about configuration options, please visit the Wiki https://
 .memory-popup .stats .stat-label {
   font-size: 13px;
   color: var(--text1);
-  font-family: "Segoe UI";
+  font-family: 'Segoe UI';
   font-weight: 400;
   padding: 6px 4px 2px 4px;
 }
@@ -695,7 +704,7 @@ For more information about configuration options, please visit the Wiki https://
   font-size: 20px;
   font-weight: 700;
   color: var(--text1);
-  font-family: "Segoe UI";
+  font-family: 'Segoe UI';
   padding: 0 4px 12px 4px;
 }
 
@@ -704,7 +713,7 @@ For more information about configuration options, please visit the Wiki https://
   padding-right: 0;
 }
 .vpn-widget .widget-container .icon {
-  font-size: var(--bar-icon-fontsize)
+  font-size: var(--bar-icon-fontsize);
 }
 
 /* WiFi */
@@ -712,13 +721,13 @@ For more information about configuration options, please visit the Wiki https://
   padding-left: 0;
 }
 .wifi-widget .widget-container .label {
-  font-size: var(--bar-label-fontsize)
+  font-size: var(--bar-label-fontsize);
 }
 .wifi-widget .widget-container .icon {
-  font-size: var(--bar-icon-fontsize)
+  font-size: var(--bar-icon-fontsize);
 }
 .wifi-menu {
-  font-family: "Segoe UI";
+  font-family: 'Segoe UI';
   background-color: rgba(17, 28, 24, 0.3);
   max-height: 350px;
   min-height: 375px;
@@ -731,7 +740,7 @@ For more information about configuration options, please visit the Wiki https://
   background-color: var(--text1);
 }
 .wifi-menu .header {
-  font-family: "Segoe UI";
+  font-family: 'Segoe UI';
   font-size: 14px;
   font-weight: 600;
   margin-bottom: 2px;
@@ -741,7 +750,7 @@ For more information about configuration options, please visit the Wiki https://
   border-bottom: 1px solid var(--text2);
 }
 .wifi-menu .error-message {
-  font-family: "Segoe UI";
+  font-family: 'Segoe UI';
   font-size: 14px;
   font-weight: 600;
   margin-bottom: 2px;
@@ -763,33 +772,33 @@ For more information about configuration options, please visit the Wiki https://
   background-color: rgba(255, 255, 255, 0.05);
   border-radius: 6px;
 }
-.wifi-menu .wifi-item[active="true"] {
+.wifi-menu .wifi-item[active='true'] {
   background-color: rgba(255, 255, 255, 0.15);
   font-size: 14px;
   border-radius: 6px;
   min-height: 80px;
 }
 .wifi-menu .wifi-item .icon {
-  font-family: "Segoe Fluent Icons";
+  font-family: 'Segoe Fluent Icons';
   font-size: 26px;
   margin-right: 10px;
 }
 .wifi-menu .wifi-item .name {
-  font-family: "Segoe UI";
+  font-family: 'Segoe UI';
   font-size: 14px;
   margin-right: 10px;
 }
 .wifi-menu .wifi-item .password {
-  font-family: "Segoe UI";
+  font-family: 'Segoe UI';
   background-color: transparent;
   font-size: 14px;
 }
 .wifi-menu .wifi-item .status {
-  font-family: "Segoe UI";
+  font-family: 'Segoe UI';
   font-size: 14px;
 }
 .wifi-menu .wifi-item .strength {
-  font-family: "Segoe UI";
+  font-family: 'Segoe UI';
   font-size: 14px;
 }
 .wifi-menu .wifi-item .controls-container {
@@ -818,7 +827,7 @@ For more information about configuration options, please visit the Wiki https://
   border-top: 1px solid var(--text2);
 }
 .wifi-menu .footer .settings-button {
-  font-family: "Segoe UI";
+  font-family: 'Segoe UI';
   background-color: transparent;
   border: none;
   padding: 0 2px;
@@ -827,7 +836,7 @@ For more information about configuration options, please visit the Wiki https://
   color: var(--text1);
 }
 .wifi-menu .footer .refresh-icon {
-  font-family: "Segoe Fluent Icons";
+  font-family: 'Segoe Fluent Icons';
   background-color: transparent;
   border: none;
   min-width: 26px;
@@ -836,14 +845,14 @@ For more information about configuration options, please visit the Wiki https://
 }
 
 .language-widget .icon {
-  font-size: var(--bar-icon-fontsize)
+  font-size: var(--bar-icon-fontsize);
 }
 .language-menu {
   background-color: rgba(17, 28, 24, 0.7);
   min-width: 300px;
 }
 .language-menu .header {
-  font-family: "Segoe UI";
+  font-family: 'Segoe UI';
   font-size: 14px;
   font-weight: 600;
   margin-bottom: 2px;
@@ -852,7 +861,7 @@ For more information about configuration options, please visit the Wiki https://
   border-bottom: 1px solid var(--text2);
 }
 .language-menu .footer {
-  font-family: "Segoe UI";
+  font-family: 'Segoe UI';
   font-size: 12px;
   font-weight: 600;
   padding: 12px;
@@ -888,12 +897,12 @@ For more information about configuration options, please visit the Wiki https://
 }
 .language-menu .language-item .name {
   font-weight: 600;
-  font-family: "Segoe UI";
+  font-family: 'Segoe UI';
   font-size: 14px;
 }
 .language-menu .language-item .layout {
   font-weight: 600;
-  font-family: "Segoe UI";
+  font-family: 'Segoe UI';
   font-size: 12px;
 }
 .language-menu .header,

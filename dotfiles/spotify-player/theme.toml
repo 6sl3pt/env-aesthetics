@@ -39,3 +39,33 @@ playlist_desc = { fg = "BrightBlack" }
 selection = { bg = "#383B35" }
 secondary_row = {}
 table_header = { fg = "Blue" }
+
+[[themes]]
+name = "gruvbox-material"
+
+[themes.palette]
+black = "#45403d"
+red = "#ea6962"
+green = "#a9b665"
+yellow = "#d8a657"
+blue = "#7daea3"
+magenta = "#d3869b"
+cyan = "#89b482"
+white = "#d4be98"
+bright_black = "#45403d"
+bright_red = "#ea6962"
+bright_green = "#a9b665"
+bright_yellow = "#d8a657"
+bright_blue = "#7daea3"
+bright_magenta = "#d3869b"
+bright_cyan = "#89b482"
+bright_white = "#d4be98"
+
+[themes.component_style]
+like = { fg = "Red" }
+lyrics_played = { modifiers = ["Dim"] }
+playback_genres = { fg = "#665C54", modifiers = ["Italic"] }
+playback_metadata = { fg = "#665c54" }
+playlist_desc = { fg = "#665c54" }
+selection = { bg = "BrightBlack" }
+secondary_row = {}

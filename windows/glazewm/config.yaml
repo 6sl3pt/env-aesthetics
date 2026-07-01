@@ -60,7 +60,8 @@ window_effects:
     # ** Exclusive to Windows 11 due to API limitations.
     border:
       enabled: true
-      color: '#509475'
+      # color: '#509475'
+      color: '#928374'
 
     # Remove the title bar from the window's frame. Note that this can
     # cause rendering issues for some applications.
@@ -321,7 +322,8 @@ keybindings:
     bindings: ['alt+shift+9']
 
   # Applications
-  - commands: ['shell-exec brave.exe --incognito --new-window "https://chatgpt.com"']
+  - commands:
+      ['shell-exec brave.exe --incognito --new-window "https://chatgpt.com"']
     bindings: ['alt+shift+a']
   - commands: ['shell-exec brave.exe --incognito']
     bindings: ['alt+shift+b']
