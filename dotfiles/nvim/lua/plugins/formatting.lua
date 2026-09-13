@@ -5,6 +5,8 @@ return {
       formatters_by_ft = {
         toml = { "taplo" },
         markdown = { "markdownlint-cli2" },
+        json = { "prettier_json" },
+        jsonc = { "prettier_jsonc" },
       },
       formatters = {
         ["markdownlint-cli2"] = {
@@ -42,12 +44,28 @@ return {
                 "--trailing-comma",
                 "all",
                 "--single-quote",
-                "--no-tabs"
+                "--no-tabs",
               })
             end
 
             return args
           end,
+        },
+        prettier_json = {
+          inherit = "prettier",
+          append_args = {
+            "--trailing-comma",
+            "none",
+          },
+        },
+        prettier_jsonc = {
+          inherit = "prettier",
+          append_args = {
+            "--trailing-comma",
+            "none",
+            "--parser",
+            "jsonc",
+          },
         },
       },
     },
