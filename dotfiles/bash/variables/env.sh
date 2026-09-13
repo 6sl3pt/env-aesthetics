@@ -1,3 +1,5 @@
+export PATH=$PATH:$HOME/.opencode/bin
+
 export SOPS_AGE_KEY_FILE=$HOME/.sops/age/second-brain-key.txt
 
 export TERM=xterm-256color
