@@ -2,6 +2,8 @@
 alias n='nvim'
 alias vi='nvim'
 
+alias ff='fastfetch'
+
 alias ls='eza -lh --group-directories-first --icons=auto'
 alias lsa='ls -a'
 alias lt='eza --tree --level=2 --long --icons --git'
