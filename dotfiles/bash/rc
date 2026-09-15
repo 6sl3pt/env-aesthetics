@@ -16,11 +16,12 @@ fi
 
 # tmux - auto start session
 if command -v tmux &>/dev/null && [ -z "$TMUX" ]; then
-  tmux has-session -t dev 2>/dev/null
+  terminal="${TERM#xterm-}"
 
-  if [ $? != 0 ]; then
-    tmux new-session -d -s dev -n editor 'fastfetch; bash'
+  if ! tmux has-session -t "$terminal" 2>/dev/null; then
+    tmux new-session -d -s "$terminal" -n editor \
+      'sleep 0.5; fastfetch; exec bash'
   fi
 
-  tmux attach-session -t dev
+  tmux attach-session -t "$terminal"
 fi
