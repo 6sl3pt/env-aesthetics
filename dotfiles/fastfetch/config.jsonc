@@ -3,8 +3,8 @@
   "logo": {
     "type": "kitty-icat",
     "source": "~/.config/fastfetch/images/mucha-winter.jpg",
-    "height": 60,
-    "width": 24
+    "height": 68,
+    "width": 26
   },
   "display": {
     "separator": " ➜  "
