@@ -5,3 +5,4 @@
 **/secret*
 
 dotfiles/containers/systemd/
+dotfiles/kitty/ignored/
