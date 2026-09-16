@@ -1,0 +1,30 @@
+It's not a bug, it's a feature.
+It works on my machine.
+There's no place like 127.0.0.1.
+I would tell you a UDP joke, but you might not get it.
+To understand recursion, you must first understand recursion.
+I love pressing F5. It's so refreshing.
+I don't always test my code, but when I do, I do it in production.
+I had a problem, so I decided to use Java. Now I have a ProblemFactory.
+Commit message: 'Final final FINAL version.'
+I'd never expose an API key. I put it in gitingore.
+99 little bugs in the code. Take one down, patch it around, 127 little bugs in the code…
+There are 10 types of people in the world — those who understand binary, and those who don't.
+My code doesn't have bugs. It just develops random features.
+Dear user, no, we can't 'just add that feature'.
+The code works perfectly… until someone uses it.
+LGTM.
+It can't be broken, it passes all unit tests.
+It works, but it's not been tested.
+I'm surprised the code was working at all.
+Oh, that was just a temporary fix.
+Oh, that was only supposed to be a placeholder.
+Please ignore that, it’s for debugging.
+Somebody must have changed my code.
+Errors have changed, we make progress.
+That important email must have been marked as spam.
+That worked perfectly when I developed it.
+That's already fixed, it just hasn't taken effect yet.
+Wait, this code was not supposed to go in to production yet...
+Well done, it's not a bug, you found my easter egg!
+Well, at least it displays a very pretty error.
