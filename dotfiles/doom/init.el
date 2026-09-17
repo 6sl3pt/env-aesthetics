@@ -197,7 +197,7 @@
        ;;(rss +org)        ; emacs as an RSS reader
 
        :config
-       ;;literate
+       literate
        (default +bindings +smartparens))
 
 ;; If you're a dark-mode user who suffers from the "flash of white Emacs" when

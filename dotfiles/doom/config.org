@@ -1,0 +1,274 @@
+#+title: Doom Emacs Config
+
+* Table of Contents :toc:
+- [[#good-to-know][Good to Know]]
+  - [[#theme-colors][Theme Colors]]
+- [[#doom-settings][Doom Settings]]
+  - [[#themes][Themes]]
+  - [[#doom-dashboard][Doom Dashboard]]
+  - [[#doom-modeline][Doom Modeline]]
+- [[#org-mode-settings][Org Mode Settings]]
+  - [[#org-edna][Org Edna]]
+  - [[#org-todo][Org Todo]]
+  - [[#org-priority][Org Priority]]
+  - [[#org-modern][Org Modern]]
+- [[#other-settings][Other Settings]]
+
+* Good to Know
+
+** Theme Colors
+Using a color keyword such as `red` won't give you the color defined by the current Doom theme. To retrieve a theme-aware color, use Doom's `doom-color` function.
+
+- Get a theme-aware color with: `(doom-color '<color-name>)`
+- List all available color names with: `(mapcar #'car doom-themes--colors)`
+
+This keeps custom faces consistent with the active Doom theme instead of hard-coding color values.
+
+* Doom Settings
+
+Configure the Doom theme, its variant, and the default font.
+
+** Themes
+
+#+begin_src emacs-lisp
+(setq doom-gruvbox-dark-variant "soft")
+(setq doom-theme 'doom-gruvbox)
+(setq doom-font (font-spec :family "CaskaydiaMono Nerd Font" :size 12))
+#+end_src
+
+** Doom Dashboard
+
+*** Rendering Order
+
+Doom's dashboard is built from a list of widget functions. Setting `+dashboard-functions` replaces the default widget order, allowing widgets to be added, removed, or rearranged.
+
+#+begin_src emacs-lisp
+(setq +dashboard-functions
+      `(+dashboard-widget-banner
+        +dashboard-widget-name
+        +dashboard-widget-date
+        +dashboard-widget-shortmenu
+        +dashboard-widget-footer
+        +dashboard-widget-loaded)
+      )
+#+end_src
+
+*** Banner
+
+Doom does not provide a simple setting for replacing the ASCII banner with custom text. Instead, the banner drawing function is overridden to read the ASCII art from a file.
+
+#+begin_src emacs-lisp
+(defun +dashboard-draw-ascii-banner-fn ()
+  "Read text file and return dashboard ASCII logo banner."
+  (propertize
+   (with-temp-buffer
+     (insert-file-contents "~/.config/doom/dashboard/banner/creation-of-adam.txt")
+     (buffer-string))
+   'face '+dashboard-banner)
+  )
+#+end_src
+
+To use an image instead of ASCII art, Doom's native `fancy-splash-image` can be configured instead.
+
+#+begin_src emacs-lisp
+;;(setq fancy-splash-image "~/.config/doom/dashboard/banner/banner.svg")
+#+end_src
+
+*** Footer
+
+The default Doom dashboard footer displays a GitHub icon linking to the Doom Emacs repository. I replace it with a randomly selected phrase.
+
+1. Create the phrase directory: `~/.config/doom/dashboard/phrase/`
+2. Add one or more `.txt` files to the directory
+3. Put one phrase per line inside each file
+4. I create this function to randomly select both a file and a non-empty line from that file
+
+   #+begin_src emacs-lisp
+    (defun +dashboard-random-phrase ()
+    "Return a random phrase from a random .txt file."
+    (let* ((dir (expand-file-name "~/.config/doom/dashboard/phrase/"))
+            (files (directory-files dir t "\\.txt\\'" t))
+            (file (seq-random-elt files)))
+        (when file
+        (with-temp-buffer
+            (insert-file-contents file)
+            (let ((lines (seq-filter
+                        (lambda (line)
+                            (not (string-empty-p (string-trim line))))
+                        (split-string (buffer-string) "\n" t))))
+            (seq-random-elt lines))))))
+   #+end_src
+
+5. The dashboard footer function is then overridden to display the randomly selected phrase
+
+    #+begin_src emacs-lisp
+    (defun +dashboard-widget-footer ()
+    (+dashboard-insert
+    (propertize
+        (format "\n“%s”\n" (+dashboard-random-phrase))
+        'face `(:foreground ,(doom-color 'blue)))
+    ))
+    #+end_src
+
+*** Custom Widgets
+
+**** Date Widget
+
+My LazyVim dashboard displays the current date, and I wanted a similar widget in my Doom dashboard.
+
+#+begin_src emacs-lisp
+(defun +dashboard-widget-date ()
+  "Return today's date in a specific format."
+  (+dashboard-insert
+   (propertize
+    (format "\n[ %s ]\n" (format-time-string "%A, %B %d %Y"))
+    'face `(:foreground ,(doom-color 'fg)))
+   ))
+#+end_src
+
+**** Name Widget
+
+The default ASCII banner contains the word `E M A C S` as part of the artwork. I wanted the title to be separate from the banner, so this widget displays it independently.
+
+#+begin_src emacs-lisp
+(defun +dashboard-widget-name ()
+  "Return string of title name"
+  (+dashboard-insert
+   (propertize
+    "- D O O M  E M A C S -"
+    'face `(:foreground ,(doom-color 'grey)))
+   ))
+#+end_src
+
+** Doom Modeline
+
+Adding time display in modeline
+
+#+begin_src emacs-lisp
+(after! doom-modeline
+  (setq doom-modeline-time t
+        display-time-format "%H:%M"
+        display-time-default-load-average nil)
+  (display-time-mode 1))
+#+end_src
+
+* Org Mode Settings
+
+Set the directory used by Org Mode for personal files
+
+#+begin_src emacs-lisp
+(setq org-directory "~/personal/org/")
+
+(after! org
+  (setq org-tags-column -80))
+#+end_src
+
+** Org Edna
+
+This setting will ensure that `org-edna` will always enable in Org mode
+
+`org-edna` provides additional task dependency and workflow features, which are used by the custom BLOCKED TODO state below
+
+#+begin_src emacs-lisp
+(after! org
+  (org-edna-mode 1))
+#+end_src
+
+** Org Todo
+
+The TODO workflow is designed around the lifecycle of a task, from initial creation through completion or cancellation
+
+| Keyword    | Description                                             |
+|------------+---------------------------------------------------------|
+| TODO       | Task has been created but work has not started          |
+|------------+---------------------------------------------------------|
+| INPROGRESS | Task is currently being worked on                       |
+|------------+---------------------------------------------------------|
+| READY      | Task is ready for testing, deployment, or the next step |
+|------------+---------------------------------------------------------|
+| HOLD       | Task is temporarily paused or waiting                   |
+|------------+---------------------------------------------------------|
+| BLOCKED    | Task cannot proceed because another task is blocking it |
+|------------+---------------------------------------------------------|
+| DONE       | Task has been completed                                 |
+|------------+---------------------------------------------------------|
+| CANCEL     | Task has been cancelled                                 |
+|------------+---------------------------------------------------------|
+`BLOCKED` is used together with `org-edna` to represent tasks that are waiting on other tasks
+
+#+begin_src emacs-lisp
+(after! org
+  (setq org-todo-keywords
+        '((sequence
+           "TODO(t)"
+           "INPROGRESS(i)"
+           "READY(r)"
+           "HOLD(h)"
+           "BLOCKED(b)"
+           "|"
+           "DONE(d)"
+           "CANCEL(c)"))
+        org-todo-keyword-faces
+        `(("TODO"       :foreground ,(doom-color 'yellow))
+          ("INPROGRESS" :foreground ,(doom-color 'teal))
+          ("READY"      :foreground ,(doom-color 'blue))
+          ("HOLD"       :foreground ,(doom-color 'violet))
+          ("BLOCKED"    :foreground ,(doom-color 'red))
+          ("DONE"       :foreground ,(doom-color 'green))
+          ("CANCEL"     :foreground ,(doom-color 'magenta))))
+  )
+#+end_src
+
+** Org Priority
+
+I want Org priorities to have similar priority icon used by Jira, so I replace the default priority letters with these
+
+| Icon | Priority |
+|------+----------|
+| 󰄿    | High     |
+|------+----------|
+| 󰅃    | Medium   |
+|------+----------|
+| 󰅀    | Low      |
+
+#+begin_src emacs-lisp
+(use-package! org-fancy-priorities
+  :ensure t
+  :hook
+  (org-mode . org-fancy-priorities-mode)
+  :config
+  (setq org-fancy-priorities-list '("󰄿" "󰅃" "󰅀")))
+
+(setq org-priority-faces
+      `((?A :foreground ,(doom-color 'red))
+        (?B :foreground ,(doom-color 'orange))
+        (?C :foreground ,(doom-color 'teal))))
+#+end_src
+
+** Org Modern
+
+`org-modern` changes the visual presentation of various Org Mode elements.
+
+I disable `org-modern-priority` because its default behavior applies the priority color to the background of the priority icon. I prefer the color to be applied directly to the icon instead.
+
+#+begin_src emacs-lisp
+(use-package org-modern
+  :hook
+  (org-mode . org-modern-mode)
+  :custom
+  (org-modern-priority nil))
+
+(after! org-modern
+  (global-org-modern-mode 1)
+  (setq org-modern-table t
+        org-modern-table-vertical 1
+        )
+  )
+#+end_src
+
+* Other Settings
+
+#+begin_src emacs-lisp
+(setq display-line-numbers-type 'relative)
+(setq confirm-kill-emacs nil)
+#+end_src
