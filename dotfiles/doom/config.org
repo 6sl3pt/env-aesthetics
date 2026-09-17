@@ -62,7 +62,7 @@ Doom does not provide a simple setting for replacing the ASCII banner with custo
   "Read text file and return dashboard ASCII logo banner."
   (propertize
    (with-temp-buffer
-     (insert-file-contents "~/.config/doom/dashboard/banner/creation-of-adam.txt")
+     (insert-file-contents "~/.config/doom/dashboard/banner/creation-of-adam-circle.txt")
      (buffer-string))
    'face '+dashboard-banner)
   )
