@@ -73,5 +73,18 @@ return {
         desc = "Debug: Pause",
       },
     },
+    opt = function()
+      local dap = require("dap")
+
+      vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DiagnosticError", linehl = "", numhl = "" })
+
+      dap.defaults.java.terminal_win_cmd = function()
+        local buf = vim.api.nvim_create_buf(true, true)
+        vim.cmd("belowright split")
+        local win = vim.api.nvim_get_current_win()
+        vim.api.nvim_win_set_buf(win, buf)
+        return buf, win
+      end
+    end,
   },
 }
