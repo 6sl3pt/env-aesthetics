@@ -157,10 +157,11 @@ Adding time display in modeline
 Set the directory used by Org Mode for personal files
 
 #+begin_src emacs-lisp
-(setq org-directory "~/personal/org/")
+(setq org-directory "~/org/")
 
 (after! org
-  (setq org-tags-column -80))
+  (setq org-log-done 'time
+        org-tags-column -80))
 #+end_src
 
 ** Org Edna
