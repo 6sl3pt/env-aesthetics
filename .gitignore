@@ -8,3 +8,6 @@ dotfiles/containers/systemd/
 dotfiles/doom/config.el
 dotfiles/doom/custom.el
 dotfiles/kitty/ignored/
+
+# NixOS
+result
