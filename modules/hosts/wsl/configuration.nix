@@ -23,6 +23,12 @@
     };
 
     system.stateVersion = "26.05";
+
+    my.dotfiles = {
+      enable = true;
+      user = "phudit";
+      source = "/home/phudit/personal/env-aesthetics/dotfiles";
+    };
   };
 
 }
