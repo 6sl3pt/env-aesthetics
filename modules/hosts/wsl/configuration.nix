@@ -4,9 +4,12 @@
     imports = [
       inputs.nix-wsl.nixosModules.default
       self.nixosModules.dotfiles
+      self.nixosModules.fonts
+      self.nixosModules.git
+      self.nixosModules.kitty
       self.nixosModules.shell
       self.nixosModules.ssh
-      self.nixosModules.git
+      self.nixosModules.tmux
     ];
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];

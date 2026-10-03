@@ -23,6 +23,17 @@ in
         if command -v starship &>/dev/null; then
           eval "$(starship init bash)"
         fi
+
+        if command -v tmux &>/dev/null && [ -z "$TMUX" ]; then
+          terminal="''${TERM#xterm-}"
+
+          if ! tmux has-session -t "$terminal" 2>/dev/null; then
+            tmux new-session -d -s "$terminal" -n editor \
+              "sleep 0.5; fastfetch; exec bash"
+          fi
+
+          tmux attach-session -t "$terminal"
+        fi
       '';
     };
   };
