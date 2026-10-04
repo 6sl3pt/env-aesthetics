@@ -15,9 +15,10 @@ in
 
     programs.bash = {
       enable = true;
+      shellAliases = {
+        ls = "eza -lh --group-directories-first --icons=auto";
+      };
       interactiveShellInit = ''
-        unalias ls 2>/dev/null
-
         [ -f "$HOME/.config/bash/init.sh" ] && source "$HOME/.config/bash/init.sh"
 
         if command -v starship &>/dev/null; then
