@@ -29,7 +29,7 @@ in
           terminal="''${TERM#xterm-}"
 
           if ! tmux has-session -t "$terminal" 2>/dev/null; then
-            tmux new-session -d -s "$terminal" -n editor \
+            tmux new-session -d -s "$terminal" \
               "sleep 0.5; fastfetch; exec bash"
           fi
 
