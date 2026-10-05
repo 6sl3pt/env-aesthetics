@@ -5,10 +5,12 @@
       inputs.nix-wsl.nixosModules.default
       self.nixosModules.btop
       self.nixosModules.dotfiles
+      self.nixosModules.emacs
       self.nixosModules.fonts
       self.nixosModules.git
       self.nixosModules.kitty
       self.nixosModules.nvim
+      self.nixosModules.podman
       self.nixosModules.shell
       self.nixosModules.ssh
       self.nixosModules.tmux
