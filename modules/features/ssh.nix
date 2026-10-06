@@ -1,6 +1,10 @@
 { ... }: {
 
-  flake.nixosModules.ssh = { ... }: {
+  flake.nixosModules.ssh = { pkgs, ... }: {
+    environment.systemPackages = with pkgs; [
+      openssl
+    ];
+
     programs.ssh = {
       extraConfig = ''
         Include $HOME/.ssh/config.d/*

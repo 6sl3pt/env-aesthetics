@@ -7,6 +7,18 @@ let
       starship
     ];
   };
+
+  # nix-only aliases & functions
+  aliases = {
+    ls = "eza -lh --group-directories-first --icons=auto"; # force overwrite
+    nxc = "nix-collect-garbage";
+    nxo = "nix-store --optimise";
+  };
+  functions = ''
+    nxs() {
+      sudo nixos-rebuild switch --flake ".#$1"
+    }
+  '';
 in
 {
 
@@ -15,9 +27,7 @@ in
 
     programs.bash = {
       enable = true;
-      shellAliases = {
-        ls = "eza -lh --group-directories-first --icons=auto";
-      };
+      shellAliases = aliases;
       interactiveShellInit = ''
         [ -f "$HOME/.config/bash/init.sh" ] && source "$HOME/.config/bash/init.sh"
 
@@ -35,6 +45,8 @@ in
 
           tmux attach-session -t "$terminal"
         fi
+
+        ${functions}
       '';
     };
   };
@@ -44,6 +56,7 @@ in
 
     programs.zsh = {
       enable = true;
+      shellAliases = aliases;
     };
   };
 
