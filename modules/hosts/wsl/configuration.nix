@@ -12,6 +12,7 @@
       self.nixosModules.nvim
       self.nixosModules.podman
       self.nixosModules.shell
+      self.nixosModules.spotify-pulseaudio
       self.nixosModules.ssh
       self.nixosModules.tmux
     ];

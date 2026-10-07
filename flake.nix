@@ -3,6 +3,7 @@
 
   inputs = {
     pkgs-2605.url = "github:NixOS/nixpkgs/release-26.05";
+    pkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     nix-wsl = {
       url = "github:nix-community/NixOS-WSL/release-26.05";
