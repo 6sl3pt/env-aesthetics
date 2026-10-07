@@ -2,6 +2,11 @@
 
   flake.nixosModules.nvim = { pkgs, ... }: {
     environment.systemPackages = with pkgs; [
+      # mason dependencies
+      nodejs
+      unzip
+
+      # tools
       fd
       fzf
       gcc
@@ -9,7 +14,10 @@
       tree-sitter
     ];
 
-    programs.neovim.enable = true;
+    programs.neovim = {
+      enable = true;
+      defaultEditor = true;
+    };
   };
 
 }
