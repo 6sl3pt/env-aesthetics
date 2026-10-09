@@ -2,6 +2,10 @@
 
   flake.nixosModules.nvim = { pkgs, ... }: {
     environment.systemPackages = with pkgs; [
+      # LSPs
+      nixd
+      nixfmt
+
       # mason dependencies
       nodejs
       unzip

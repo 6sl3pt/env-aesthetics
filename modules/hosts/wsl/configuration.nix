@@ -31,6 +31,7 @@
     };
 
     system.stateVersion = "26.05";
+    time.timeZone = "Asia/Bangkok";
 
     my.dotfiles = {
       enable = true;
