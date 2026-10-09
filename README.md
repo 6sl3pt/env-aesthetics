@@ -2,35 +2,98 @@
 
 This repository is my personal collection of themes, settings, and configurations designed to bring a unified aesthetic across all the environments I use whether on Linux, Windows, or MacOS, and across various tools
 
-The goal is simple: **achieve aesthetic consistency between every environment I work in**
+The goal is simple: **achieve aesthetic consistency between every environment I work in**, and to do that I decided to use NixOS.
+I don't care much about NixOS being perfectly pure. I like Nix for its ability to reproduce my environment across machines, even if I change hardware or OS.
+I prefer usability over purity, so I keep configs as dotfiles [managed with Stow](/modules/features/dotfiles.nix) rather than `.nix` files that require rebuilding the OS for every small change.
+
+NixOS focuses on setting up the environment, while dotfiles focus on usability and configuration.
 
 ## Content
 
-- `/background`: cool backgrounds
-- `/dotfiles`: common application settings
-- `/macos`: settings for MacOS application
-- `/windows`: settings for Windows application
+```sh
+env-aesthetics
+├── background # cool backgrounds
+├── dotfiles   # common application settings
+├── modules    # Nix configuration for every machine
+└── windows    # settings for Windows application
+```
 
 ## Installation
 
-### Spotify Player
+### Pre-process
 
-1. Install [Rust and cargo](https://www.rust-lang.org/tools/install) as the build dependencies
+**WSL**
 
-1. Install [application dependencies](https://github.com/aome510/spotify-player/blob/master/README.md#installation)
+1. Install distro following [NixOS-WSL guide](https://nix-community.github.io/NixOS-WSL/install.html)
 
-#### WSL2
+1. You will start with default `nixos` user, as a workaround create and work in new default user home directory instead:
 
-Since WSL2 come with WSLg which contains pulse audio, install `pulseaudio-backend` instead of default `rodio-backend`
+    ```sh
+    sudo mkdir -p /home/yourusername
 
-```sh
-# check if pulse audio server existed
-echo $PULSE_SERVER
+    sudo chown -R nixos:users /home/yourusername
+    ```
 
-# install with features
-cargo install spotify_player --no-default-features \
-  --features pulseaudio-backend,image
-```
+> If working in default nixos home directory, you will need to migrate or clone SSH and git repo to new user after setup.
+
+### Setup
+
+1. Setup SSH key
+1. Temporary enable `git` and `openssh`
+
+    ```sh
+    nix-shell -p git openssh
+    ```
+
+1. Clone repository
+
+    ```sh
+    GIT_SSH_COMMAND='ssh -i ~/.ssh/id_ed25519_personal -o IdentitiesOnly=yes' \
+      git clone git@github.com:6sl3pt/env-aesthetics.git
+    ```
+
+1. Build flake and switch to new build
+
+    ```sh
+    NIX_CONFIG="experimental-features = nix-command flakes" sudo nixos-rebuild switch --flake .#<host>
+    ```
+
+### Post-process
+
+**WSL**
+
+1. After switch successfully, terminate WSL:
+
+    ```sh
+    wsl --terminate NixOS
+    ```
+
+1. Start NixOS again, check user and package, then set password:
+
+    ```sh
+    whoami
+    echo "$HOME"
+    which git
+
+    sudo passwd yourusername
+    ```
+
+1. Check `nixos` user, if not exists, delete `nixos` home directory:
+
+    ```sh
+    getent passwd nixos
+
+    sudo rm -rf /home/nixos
+    ```
+
+## Application Notes
+
+### Doom Emacs
+
+Following the same principle above, **Doom Emacs is installed manually** rather than through Nix.
+This keeps Doom's own workflow and lets me update it independently without rebuilding NixOS.
+
+[Follow official install guideline](https://github.com/doomemacs/core#install)
 
 ### Kitty
 
@@ -46,30 +109,14 @@ cargo install spotify_player --no-default-features \
 
 1. This will change theme inside ignored directory, main config won't change
 
-#### WSL2
+### Windows Shortcut
 
-1. Install latest mesa
+After apply [WSL NixOS](#nixos) configuration, create shortcut with location:
 
-```sh
-sudo add-apt-repository ppa:kisak/kisak-mesa
+```
+"C:\Program Files\WSL\wslg.exe" -d NixOS --cd "~" -- kitty
 
-sudo apt upgrade
+"C:\Program Files\WSL\wslg.exe" -d NixOS --cd "~" -- emacs
 ```
 
-1. (Optional) Install `mesa-utils` to check if your WSL can run kitty or not (kitty required OpenGL 3+)
-
-```sh
-sudo apt install mesa-utils
-
-glxinfo -B
-```
-
-1. Install Kitty: `sudo apt install kitty`, start it with `kitty`
-
-1. At this point, shortcut should be create at `~\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\<distro>` which will automatically open kitty terminal on top of WSL
-
-### Doom Emacs
-
-1. Install Emacs: `sudo apt install emacs`
-
-1. Install Doom Emacs by following official [guide](https://github.com/doomemacs/core)
+Make sure it's `wslg.exe` (Wayland) not `wsl.exe`
