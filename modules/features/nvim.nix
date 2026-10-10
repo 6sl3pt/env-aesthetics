@@ -3,6 +3,7 @@
   flake.nixosModules.nvim = { pkgs, ... }: {
     environment.systemPackages = with pkgs; [
       # LSPs
+      lua-language-server
       nixd
       nixfmt
 
