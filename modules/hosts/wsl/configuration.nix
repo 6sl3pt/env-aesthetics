@@ -1,9 +1,10 @@
 { self, inputs, ... }: {
 
-  flake.nixosModules.wslConfiguration = { pkgs, ... }: {
+  flake.nixosModules.wslConfiguration = { ... }: {
     imports = [
       inputs.nix-wsl.nixosModules.default
       self.nixosModules.btop
+      self.nixosModules.devenv
       self.nixosModules.dotfiles
       self.nixosModules.emacs
       self.nixosModules.fonts
@@ -17,7 +18,10 @@
       self.nixosModules.tmux
     ];
 
-    nix.settings.experimental-features = [ "nix-command" "flakes" ];
+    nix.settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
 
     wsl.enable = true;
     wsl.defaultUser = "phudit";
