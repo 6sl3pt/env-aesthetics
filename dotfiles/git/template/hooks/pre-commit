@@ -1,0 +1,11 @@
+#!/bin/sh
+
+PROJECT_ROOT="$(git rev-parse --show-toplevel)"
+
+betterleaks git "$PROJECT_ROOT" --pre-commit --staged --no-banner -v --log-level error
+
+if [ $? -ne 0 ]; then
+  echo ""
+  printf "\033[31mBLOCKED:\033[0m Secret detected in staged changes\n"
+  exit 1
+fi
