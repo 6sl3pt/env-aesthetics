@@ -12,6 +12,7 @@
       self.nixosModules.kitty
       self.nixosModules.nvim
       self.nixosModules.podman
+      self.nixosModules.secrets
       self.nixosModules.shell
       self.nixosModules.spotify-pulseaudio
       self.nixosModules.ssh
@@ -41,6 +42,11 @@
       enable = true;
       user = "phudit";
       source = "/home/phudit/personal/env-aesthetics/dotfiles";
+    };
+
+    my.secrets = {
+      user = "phudit";
+      keyFile = "/home/phudit/.config/sops/age/nix-secrets.txt";
     };
   };
 

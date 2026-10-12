@@ -1,8 +1,8 @@
 **/*lock.json
 **/*.log
 
-**/secrets
-**/secret*
+dotfiles/**/secrets
+dotfiles/**/secret*
 
 dotfiles/containers/systemd/
 dotfiles/doom/config.el
