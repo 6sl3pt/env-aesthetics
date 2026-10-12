@@ -38,6 +38,7 @@ env-aesthetics
 
 ### Setup
 
+1. Migrate AGE key file
 1. Setup SSH key
 1. Temporary enable `git` and `openssh`
 
@@ -88,12 +89,21 @@ env-aesthetics
 
 ## Application Notes
 
+### SOPS AGE
+
+After setup AGE key, secret file can be edit with command: `sops <secret-file>`
+
 ### Doom Emacs
 
-Following the same principle above, **Doom Emacs is installed manually** rather than through Nix.
+Following the same principle above, [Doom Emacs is installed manually](https://github.com/doomemacs/core#install) rather than through Nix.
 This keeps Doom's own workflow and lets me update it independently without rebuilding NixOS.
 
-[Follow official install guideline](https://github.com/doomemacs/core#install)
+If you're using WSL and care about the annoying flow of opening a terminal,
+typing a command to launch Doom Emacs, then closing it, unfortunately the pain continues.
+
+As `emacs` binary will locked to `pkgs.emacs`, so you need to run `<doom-binary> emacs`.
+That works from the terminal but not properly with Windows shortcuts.
+Aliases don't help either, since shortcuts can't resolve bash aliases without invoking bash first.
 
 ### Kitty
 
