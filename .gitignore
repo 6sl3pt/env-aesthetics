@@ -5,7 +5,6 @@ dotfiles/**/secrets
 dotfiles/**/secret*
 
 dotfiles/containers/systemd/
-dotfiles/doom/config.el
 dotfiles/doom/custom.el
 dotfiles/kitty/ignored/
 dotfiles/tmux/current-theme.conf

@@ -5,8 +5,8 @@
       inputs.nix-wsl.nixosModules.default
       self.nixosModules.btop
       self.nixosModules.devenv
+      self.nixosModules.doom-emacs-unstraightened
       self.nixosModules.dotfiles
-      self.nixosModules.emacs
       self.nixosModules.fonts
       self.nixosModules.git
       self.nixosModules.kitty
