@@ -40,6 +40,10 @@ in
             eval "$(starship init bash)"
           fi
 
+          if command -v devenv &>/dev/null; then
+            eval "$(devenv hook bash | sed 's/devenv shell/devenv shell --no-reload/')"
+          fi
+
           if command -v tmux &>/dev/null && [ -z "$TMUX" ]; then
             terminal="''${TERM#xterm-}"
 
