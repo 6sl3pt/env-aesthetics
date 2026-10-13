@@ -1,13 +1,10 @@
 { self, ... }: {
 
   flake.nixosModules.fonts = { pkgs, ... }: {
-    nixpkgs.overlays = [
-      self.overlays.ibm-plex-thai
-    ];
-
-    fonts.packages = [
-      pkgs.nerd-fonts.caskaydia-mono
-      pkgs.ibm-plex-thai
+    fonts.packages = with pkgs; [
+      nerd-fonts.caskaydia-mono
+      noto-fonts-color-emoji
+      self.packages.${pkgs.system}.ibm-plex-thai
     ];
   };
 

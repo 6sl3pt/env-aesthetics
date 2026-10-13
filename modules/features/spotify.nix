@@ -4,7 +4,7 @@
     nixpkgs.overlays = [
       (final: prev: {
         spotify-player =
-          (import inputs.pkgs-unstable {
+          (import inputs.nixpkgs {
             system = prev.stdenv.hostPlatform.system;
           }).spotify-player;
       })

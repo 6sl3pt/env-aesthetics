@@ -2,8 +2,8 @@
   description = "My personal NixOS configuration";
 
   inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     pkgs-2605.url = "github:NixOS/nixpkgs/release-26.05";
-    pkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     nix-wsl = {
       url = "github:nix-community/NixOS-WSL/release-26.05";
@@ -14,17 +14,28 @@
     import-tree.url = "github:vic/import-tree";
     wrapper-modules = {
       url = "github:BirdeeHub/nix-wrapper-modules";
-      inputs.nixpkgs.follows = "pkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     sops-nix = {
       url = "github:mic92/sops-nix";
-      inputs.nixpkgs.follows = "pkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-doom-emacs-unstraightened = {
       url = "github:marienz/nix-doom-emacs-unstraightened";
-      inputs.nixpkgs.follows = "pkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
+  outputs =
+    inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "x86_64-darwin"
+        "aarch64-darwin"
+      ];
+
+      imports = [ (inputs.import-tree ./modules) ];
+    };
 }
