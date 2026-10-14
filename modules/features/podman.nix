@@ -7,6 +7,7 @@
     };
 
     environment.systemPackages = with pkgs; [
+      slirp4netns
       podman-compose
     ];
 
