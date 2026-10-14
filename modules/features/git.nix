@@ -11,7 +11,7 @@
       config = {
         init.defaultBranch = "main";
         init.templateDir = "~/.config/git/template";
-        core.editor = "vim";
+        core.editor = "nvim";
       };
     };
   };
