@@ -1,4 +1,5 @@
 export PATH=$PATH:$HOME/.opencode/bin
+export PATH=$PATH:$HOME/.npm-global/bin
 
 export SOPS_AGE_KEY_FILE=$HOME/.config/sops/age/nix-secrets.txt
 
