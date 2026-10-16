@@ -65,7 +65,8 @@
         display-time-default-load-average nil)
   (display-time-mode 1))
 
-(setq org-directory "~/org/")
+(setq org-directory "~/org/"
+      org-agenda-files (directory-files-recursively org-directory "\\.org$"))
 
 (after! org
   (setq org-log-done 'time
