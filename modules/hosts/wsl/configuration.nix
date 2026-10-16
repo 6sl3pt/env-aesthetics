@@ -1,22 +1,8 @@
-{ self, inputs, ... }: {
+{ inputs, ... }: {
 
-  flake.nixosModules.wslConfiguration = { ... }: {
+  flake.nixosModules.wslCommonConfiguration = { ... }: {
     imports = [
       inputs.nix-wsl.nixosModules.default
-      self.nixosModules.btop
-      self.nixosModules.devenv
-      self.nixosModules.doom-emacs-unstraightened
-      self.nixosModules.dotfiles
-      self.nixosModules.fonts
-      self.nixosModules.git
-      self.nixosModules.kitty
-      self.nixosModules.nvim
-      self.nixosModules.podman
-      self.nixosModules.secrets
-      self.nixosModules.shell
-      self.nixosModules.spotify-pulseaudio
-      self.nixosModules.ssh
-      self.nixosModules.tmux
     ];
 
     nix.settings.experimental-features = [
