@@ -1,18 +1,36 @@
-{ inputs, ... }: {
+{ ... }: {
 
-  flake.nixosModules.devenv = { pkgs, ... }: {
-    nixpkgs.overlays = [
-      (final: prev: {
-        devenv =
-          (import inputs.nixpkgs {
-            system = prev.stdenv.hostPlatform.system;
-          }).devenv;
-      })
-    ];
+  flake.nixosModules.devenv =
+    {
+      pkgs,
+      config,
+      lib,
+      ...
+    }:
+    let
+      cfg = config.my.devenv;
 
-    environment.systemPackages = with pkgs; [
-      devenv
-    ];
-  };
+      cfgPkgs =
+        if cfg.nixpkgs != null then
+          import cfg.nixpkgs {
+            system = pkgs.stdenv.hostPlatform.system;
+            config = config.nixpkgs.config;
+          }
+        else
+          pkgs;
+    in
+    {
+      options.my.devenv.nixpkgs = lib.mkOption {
+        type = lib.types.raw;
+        default = null;
+        description = "Override devenv nixpkgs.";
+      };
+
+      config = {
+        environment.systemPackages = [
+          cfgPkgs.devenv
+        ];
+      };
+    };
 
 }

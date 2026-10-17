@@ -1,4 +1,4 @@
-{ self, ... }: {
+{ self, inputs, ... }: {
 
   flake.nixosModules.wslConfiguration = { ... }: {
     imports = [
@@ -17,6 +17,26 @@
       self.nixosModules.ssh
       self.nixosModules.tmux
     ];
+
+    my.dotfiles = {
+      enable = true;
+      user = "phudit";
+      source = "/home/phudit/personal/env-aesthetics/dotfiles";
+    };
+
+    my.secrets = {
+      user = "phudit";
+      keyFile = "/home/phudit/.config/sops/age/nix-secrets.txt";
+    };
+
+    my.devenv = {
+      nixpkgs = inputs.nixpkgs;
+    };
+
+    my.spotify = {
+      nixpkgs = inputs.nixpkgs;
+    };
+
   };
 
 }

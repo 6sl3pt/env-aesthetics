@@ -23,17 +23,6 @@
 
     system.stateVersion = "26.05";
     time.timeZone = "Asia/Bangkok";
-
-    my.dotfiles = {
-      enable = true;
-      user = "phudit";
-      source = "/home/phudit/personal/env-aesthetics/dotfiles";
-    };
-
-    my.secrets = {
-      user = "phudit";
-      keyFile = "/home/phudit/.config/sops/age/nix-secrets.txt";
-    };
   };
 
 }

@@ -1,21 +1,39 @@
-{ inputs, ... }: {
+{ ... }: {
 
-  flake.nixosModules.spotify-pulseaudio = { pkgs, ... }: {
-    nixpkgs.overlays = [
-      (final: prev: {
-        spotify-player =
-          (import inputs.nixpkgs {
-            system = prev.stdenv.hostPlatform.system;
-          }).spotify-player;
-      })
-    ];
+  flake.nixosModules.spotify-pulseaudio =
+    {
+      pkgs,
+      config,
+      lib,
+      ...
+    }:
+    let
+      cfg = config.my.spotify;
 
-    environment.systemPackages = [
-      (pkgs.spotify-player.override {
-        withAudioBackend = "pulseaudio";
-        withImage = true;
-      })
-    ];
-  };
+      cfgPkgs =
+        if cfg.nixpkgs != null then
+          import cfg.nixpkgs {
+            system = pkgs.stdenv.hostPlatform.system;
+            config = config.nixpkgs.config;
+          }
+        else
+          pkgs;
+    in
+    {
+      options.my.spotify.nixpkgs = lib.mkOption {
+        type = lib.types.raw;
+        default = null;
+        description = "Override spotify nixpkgs.";
+      };
+
+      config = {
+        environment.systemPackages = [
+          (cfgPkgs.spotify-player.override {
+            withAudioBackend = "pulseaudio";
+            withImage = true;
+          })
+        ];
+      };
+    };
 
 }
