@@ -1,3 +1,5 @@
+*.gitconfig
+
 **/*lock.json
 **/*.log
 
@@ -8,6 +10,7 @@ dotfiles/containers/systemd/
 dotfiles/doom/custom.el
 dotfiles/kitty/ignored/
 dotfiles/tmux/current-theme.conf
+dotfiles/niri/noctalia.kdl
 
 # NixOS
 result

@@ -1,0 +1,7 @@
+prefer-no-csd
+
+screenshot-path "~/personal/pictures/screenshots/screenshot-%Y%m%d%H%M%S.png"
+
+hotkey-overlay {
+    skip-at-startup
+}
