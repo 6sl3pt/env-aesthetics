@@ -222,8 +222,7 @@
         "nix-wsl": "nix-wsl",
         "nixpkgs": "nixpkgs",
         "pkgs-2605": "pkgs-2605",
-        "sops-nix": "sops-nix",
-        "wrapper-modules": "wrapper-modules"
+        "sops-nix": "sops-nix"
       }
     },
     "sops-nix": {
@@ -243,26 +242,6 @@
       "original": {
         "owner": "mic92",
         "repo": "sops-nix",
-        "type": "github"
-      }
-    },
-    "wrapper-modules": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1788981141,
-        "narHash": "sha256-7xWS16u13YGlRNKWaAPzRbEyh4OLOXJe31k7h4AnXNU=",
-        "owner": "BirdeeHub",
-        "repo": "nix-wrapper-modules",
-        "rev": "1db3c116a6aa61823f8d8f3c47c306846428fc54",
-        "type": "github"
-      },
-      "original": {
-        "owner": "BirdeeHub",
-        "repo": "nix-wrapper-modules",
         "type": "github"
       }
     }
