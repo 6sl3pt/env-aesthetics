@@ -17,6 +17,7 @@
       self.nixosModules.shell
       self.nixosModules.spotify-pulseaudio
       self.nixosModules.ssh
+      self.nixosModules.tmux
     ];
 
     services = {
@@ -46,6 +47,10 @@
     my.secrets = {
       user = "phudit";
       keyFile = "/home/phudit/.config/sops/age/nix-secrets.txt";
+    };
+
+    my.shell = {
+      tmuxInit.enable = false;
     };
 
     my.spotify = {
