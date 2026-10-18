@@ -8,7 +8,7 @@ I prefer usability over purity, so I keep configs as dotfiles [managed with Stow
 
 NixOS focuses on setting up the environment, while dotfiles focus on usability and configuration.
 
-## Content
+## Structure
 
 ```sh
 env-aesthetics
@@ -17,6 +17,90 @@ env-aesthetics
 ├── modules    # Nix configuration for every machine
 └── windows    # settings for Windows application
 ```
+
+## Application Notes
+
+Please **read the notes below before proceeding to installation**, as they may contain additional prerequisite or other information you should be aware of.
+
+### SOPS AGE
+
+After setup AGE key, secret file can be edit with command: `sops <secret-file>`
+
+### Doom Emacs
+
+Following the same principle above, [Doom Emacs is installed manually](https://github.com/doomemacs/core#install) rather than through Nix.
+This keeps Doom's own workflow and lets me update it independently without rebuilding NixOS.
+
+**WSL Limitation**
+
+If you're using WSL and care about the annoying flow of opening a terminal,
+typing a command to launch Doom Emacs, then closing it, unfortunately the pain continues.
+
+As `emacs` binary will locked to `pkgs.emacs`, so you need to run `<doom-binary> emacs`.
+That works from the terminal but not properly with Windows shortcuts.
+Aliases don't help either, since shortcuts can't resolve bash aliases without invoking bash first.
+
+### Niri
+
+**WSL Limitation**
+
+If you're using WSL, you MUST follow this [guide](https://gist.github.com/mle98/2deb6e0aa1da3aed70a73dad9c29e8f7)
+to patch Microsoft's Weston mirror. Otherwise, you won't have a key bind to make Niri fullscreen.
+
+As for the double-cursor issue, it seems to be somewhat random in my experience.
+Sometimes I encounter it, and sometimes I don't.
+To fix it, add the following snippet to `niri.nix` inside the `postPatch`:
+
+```
+substituteInPlace src/niri.rs \
+  --replace-fail \
+    'self.render_pointer(ctx.renderer, output, &mut |elem| push(elem.into()));' \
+    '// self.render_pointer(ctx.renderer, output, &mut |elem| push(elem.into()));'
+```
+
+This will prevent Niri from rendering cursor, so that you can use Windows cursor on top of Niri.
+
+### Noctalia
+
+**WSL Limitation**
+
+I only experiment with Noctalia on WSLg, and it can be considered broken, as many of its features don't work properly in this environment.
+
+I mainly use it for automatic color schemes, nice background blur effects with Kitty, and integration with Niri.
+If you just want a visually appealing shell, it might be fine, but **it's NOT fully functional** like Noctalia on regular Linux.
+
+Bluetooth and WiFi don't work properly, and audio is also problematic.
+There seem to be some instability in the PipeWire Pulse Tunnel and WSLg PulseAudio/RDP audio path.
+Since Noctalia's built-in audio controls require PipeWire integration, getting audio to work reliably on WSLg is difficult.
+
+I tried configuring PipeWire tunnel manually, but the audio is progressively degrade until playback becomes silent with `underflow` warning.
+Running `systemctl --user restart pipewire pipewire-pulse wireplumber` temporarily restores sound, but the problem eventually returns.
+
+### Kitty
+
+**Theme Git Ignore Workaround:**
+
+1. Create ignored directory with `kitty.conf` inside, for example `~/.config/kitty/themes/`
+
+1. Setup alias `alias kitty-theme=KITTY_CONFIG_DIRECTORY=<ignored-dir> kitty +kitten themes`
+
+1. Inside main `kitty.conf`, add `include <ignored-dir>/kitty.conf`
+
+1. On theme select, choose to modify (M)
+
+1. This will change theme inside ignored directory, main config won't change
+
+### Windows Shortcut
+
+After apply [WSL NixOS](#nixos) configuration, create shortcut with location:
+
+```
+"C:\Program Files\WSL\wslg.exe" -d NixOS --cd "~" -- kitty
+
+"C:\Program Files\WSL\wslg.exe" -d NixOS --cd "~" -- emacs
+```
+
+Make sure it's `wslg.exe` (Wayland) not `wsl.exe`
 
 ## Installation
 
@@ -86,47 +170,3 @@ env-aesthetics
 
     sudo rm -rf /home/nixos
     ```
-
-## Application Notes
-
-### SOPS AGE
-
-After setup AGE key, secret file can be edit with command: `sops <secret-file>`
-
-### Doom Emacs
-
-Following the same principle above, [Doom Emacs is installed manually](https://github.com/doomemacs/core#install) rather than through Nix.
-This keeps Doom's own workflow and lets me update it independently without rebuilding NixOS.
-
-If you're using WSL and care about the annoying flow of opening a terminal,
-typing a command to launch Doom Emacs, then closing it, unfortunately the pain continues.
-
-As `emacs` binary will locked to `pkgs.emacs`, so you need to run `<doom-binary> emacs`.
-That works from the terminal but not properly with Windows shortcuts.
-Aliases don't help either, since shortcuts can't resolve bash aliases without invoking bash first.
-
-### Kitty
-
-**Theme Git Ignore Workaround:**
-
-1. Create ignored directory with `kitty.conf` inside, for example `~/.config/kitty/ignored/`
-
-1. Setup alias `alias kitty-theme=KITTY_CONFIG_DIRECTORY=<ignored-dir> kitty +kitten themes`
-
-1. Inside main `kitty.conf`, add `include <ignored-dir>/kitty.conf`
-
-1. On theme select, choose to modify (M)
-
-1. This will change theme inside ignored directory, main config won't change
-
-### Windows Shortcut
-
-After apply [WSL NixOS](#nixos) configuration, create shortcut with location:
-
-```
-"C:\Program Files\WSL\wslg.exe" -d NixOS --cd "~" -- kitty
-
-"C:\Program Files\WSL\wslg.exe" -d NixOS --cd "~" -- emacs
-```
-
-Make sure it's `wslg.exe` (Wayland) not `wsl.exe`
