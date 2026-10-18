@@ -1,22 +1,27 @@
 { inputs, ... }: {
 
-  flake.nixosModules.noctalia = { ... }: {
-    imports = [
-      inputs.noctalia.nixosModules.default
-    ];
+  flake.nixosModules.noctalia =
+    { config, lib, ... }:
+    let
+      cfg = config.my.noctalia;
+    in
+    {
+      options.my.noctalia.recommendedServices.enable = lib.mkOption {
+        type = lib.types.bool;
+        default = true;
+        description = "Use Noctalia recommended services.";
+      };
 
-    programs.noctalia = {
-      enable = true;
-      recommendedServices.enable = true;
+      imports = [
+        inputs.noctalia.nixosModules.default
+      ];
+
+      config = {
+        programs.noctalia = {
+          enable = true;
+          recommendedServices.enable = cfg.recommendedServices.enable;
+        };
+      };
     };
-  };
-
-  flake.nixosModules.noctalia-wsl = { ... }: {
-    imports = [
-      inputs.noctalia.nixosModules.default
-    ];
-
-    programs.noctalia.enable = true;
-  };
 
 }
