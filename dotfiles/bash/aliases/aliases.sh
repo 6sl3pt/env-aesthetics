@@ -19,4 +19,4 @@ alias thai='curl -s https://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-demo.txt 
 
 alias spotify='spotify_player'
 
-alias kitty-theme='KITTY_CONFIG_DIRECTORY=~/.config/kitty/ignored/ kitty +kitten themes'
+alias kitty-theme='KITTY_CONFIG_DIRECTORY=~/.config/kitty/themes/ kitty +kitten themes'

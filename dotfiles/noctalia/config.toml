@@ -5,8 +5,8 @@ source           = "wallpaper"
 wallpaper_scheme = "m3-content"
 
 [theme.templates]
-enable_builtin_templates = true
-builtin_ids              = ["niri"]
+enable_builtin_templates   = true
+builtin_ids                = [ "btop", "kitty", "niri", ]
 
 [wallpaper]
 enabled   = true
@@ -16,7 +16,44 @@ directory = "/home/phudit/personal/env-aesthetics/background/"
 [wallpaper.default]
 path = "/home/phudit/personal/env-aesthetics/background/apotheosis-of-hercules.jpeg"
 
+[shell]
+font_family = "CaskaydiaMono Nerd Font"
+
 [backdrop]
 enabled         = true
 blur_intensity  = 0.5
 tint_intensity  = 0.3
+
+[bar.default]
+margin_ends = 8
+scale       = 0.8
+thickness   = 28
+end = [
+    "tray",
+    "notifications",
+    "clipboard",
+    "network",
+    "bluetooth",
+    "volume",
+    "battery",
+    "session"
+]
+start = [ "control-center", "workspaces", "media" ]
+
+[battery]
+warning_threshold = 20
+
+[widget.clock]
+format = "{:%A} {:%H:%M}"
+
+[widget.control-center]
+color = "primary"
+
+[widget.media]
+hide_when_no_media = true
+
+[widget.session]
+color = "primary"
+
+[widget.workspaces]
+style = "minimal"

@@ -2,9 +2,10 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // --- Applications ---
-    Mod+Return hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
-    Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
-    Super+Alt+L hotkey-overlay-title="Lock the Screen" { spawn "noctalia" "lock"; }
+    Mod+Return  hotkey-overlay-title="Open a Terminal: kitty"     { spawn "kitty"; }
+    Super+Alt+L hotkey-overlay-title="Lock the Screen"            { spawn "noctalia" "lock"; }
+    Mod+Space   hotkey-overlay-title="Open a Launcher: Noctalia"  { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
+    Mod+D { spawn "noctalia" "msg" "panel-toggle" "launcher"; } // Alternative for WSL
 
     // --- Media Controls ---
     XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }

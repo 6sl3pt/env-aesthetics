@@ -8,8 +8,11 @@ dotfiles/**/secret*
 
 dotfiles/containers/systemd/
 dotfiles/doom/custom.el
-dotfiles/kitty/ignored/
 dotfiles/tmux/current-theme.conf
+
+# Noctalia automated themes
+dotfiles/btop/themes/noctalia.theme
+dotfiles/kitty/themes/
 dotfiles/niri/noctalia.kdl
 
 # NixOS
