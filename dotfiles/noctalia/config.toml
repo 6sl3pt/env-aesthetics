@@ -7,6 +7,8 @@ wallpaper_scheme = "m3-content"
 [theme.templates]
 enable_builtin_templates   = true
 builtin_ids                = [ "btop", "kitty", "niri", ]
+enable_community_templates = true
+community_ids              = [ "zen-browser", ]
 
 [wallpaper]
 enabled   = true

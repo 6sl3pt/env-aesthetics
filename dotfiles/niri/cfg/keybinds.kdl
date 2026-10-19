@@ -2,9 +2,12 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // --- Applications ---
-    Mod+Return  hotkey-overlay-title="Open a Terminal: kitty"     { spawn "kitty"; }
-    Super+Alt+L hotkey-overlay-title="Lock the Screen"            { spawn "noctalia" "lock"; }
-    Mod+Space   hotkey-overlay-title="Open a Launcher: Noctalia"  { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
+    Mod+Return        hotkey-overlay-title="Terminal: kitty"    { spawn "kitty"; }
+    Mod+Shift+Return  hotkey-overlay-title="Tmux: kitty"        { spawn "kitty" "tmux" "new-session" "-A" "-s" "kitty"; }
+    Mod+B             hotkey-overlay-title="Browser"            { spawn "zen"; }
+    Mod+Shift+B       hotkey-overlay-title="Browser (Private)"  { spawn "zen" "--private-window"; }
+    Super+Alt+L       hotkey-overlay-title="Lock the Screen"    { spawn "noctalia" "lock"; }
+    Mod+Space         hotkey-overlay-title="Launcher"           { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
     Mod+D { spawn "noctalia" "msg" "panel-toggle" "launcher"; } // Alternative for WSL
 
     // --- Media Controls ---

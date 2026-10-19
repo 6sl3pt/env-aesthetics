@@ -18,6 +18,7 @@
       self.nixosModules.spotify-pulseaudio
       self.nixosModules.ssh
       self.nixosModules.tmux
+      self.nixosModules.zen-browser
     ];
 
     services = {
