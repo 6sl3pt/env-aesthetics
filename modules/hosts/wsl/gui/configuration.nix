@@ -15,7 +15,7 @@
       self.nixosModules.podman
       self.nixosModules.secrets
       self.nixosModules.shell
-      self.nixosModules.spotify-pulseaudio
+      self.nixosModules.spotify-player
       self.nixosModules.ssh
       self.nixosModules.tmux
       self.nixosModules.zen-browser
@@ -56,6 +56,7 @@
 
     my.spotify = {
       nixpkgs = inputs.nixpkgs;
+      backend = "pulseaudio";
     };
   };
 

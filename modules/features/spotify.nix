@@ -1,6 +1,6 @@
-{ ... }: {
+{ inputs, ... }: {
 
-  flake.nixosModules.spotify-pulseaudio =
+  flake.nixosModules.spotify-player =
     {
       pkgs,
       config,
@@ -20,20 +20,65 @@
           pkgs;
     in
     {
-      options.my.spotify.nixpkgs = lib.mkOption {
-        type = lib.types.raw;
-        default = null;
-        description = "Override spotify nixpkgs.";
+      options.my.spotify = {
+        nixpkgs = lib.mkOption {
+          type = lib.types.raw;
+          default = null;
+          description = "Override spotify nixpkgs.";
+        };
+        backend = lib.mkOption {
+          type = lib.types.enum [
+            "rodio"
+            "alsa"
+            "pulseaudio"
+            "portaudio"
+            "jackaudio"
+            "rodiojack"
+            "sdl"
+            "gstreamer"
+          ];
+          default = "rodio";
+          description = "spotify_player audio backend";
+        };
       };
 
       config = {
         environment.systemPackages = [
           (cfgPkgs.spotify-player.override {
-            withAudioBackend = "pulseaudio";
+            withAudioBackend = cfg.backend;
             withImage = true;
           })
         ];
       };
+    };
+
+  flake.nixosModules.spicetify =
+    { pkgs, lib, ... }:
+    {
+      nixpkgs.config.allowUnfreePredicate =
+        pkg:
+        builtins.elem (lib.getName pkg) [
+          "spotify"
+        ];
+
+      imports = [
+        inputs.spicetify.nixosModules.default
+      ];
+
+      programs.spicetify =
+        let
+          spicePkgs = inputs.spicetify.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+        in
+        {
+          enable = true;
+          enabledExtensions = with spicePkgs.extensions; [
+            adblockify
+            hidePodcasts
+            shuffle
+          ];
+          theme = spicePkgs.themes.comfy;
+          colorScheme = "Comfy";
+        };
     };
 
 }
