@@ -62,6 +62,12 @@ This will prevent Niri from rendering cursor, so that you can use Windows cursor
 
 ### Noctalia
 
+**Qt Dynamic Icons**
+
+Utilizes Nix's `activationScripts` to clone the icon repository and create an original branch.
+On background changes, Noctalia runs a templated hook to change icon colors and saves them as a `color-xxxxxx` branch.
+This acts as a cache: the script attempts to checkout the existing color branch, and if it does not exist, fallback to `original` to generate a new color branch.
+
 **WSL Limitation**
 
 I only experiment with Noctalia on WSLg, and it can be considered broken, as many of its features don't work properly in this environment.
