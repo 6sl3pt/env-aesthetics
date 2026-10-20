@@ -5,6 +5,7 @@
       nerd-fonts.caskaydia-mono
       noto-fonts-color-emoji
       undefined-medium
+      self.packages.${pkgs.stdenv.hostPlatform.system}.google-sans-flex
       self.packages.${pkgs.stdenv.hostPlatform.system}.ibm-plex-thai
     ];
   };

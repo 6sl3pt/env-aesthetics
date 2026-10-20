@@ -19,7 +19,7 @@ directory = "/home/phudit/personal/env-aesthetics/background/"
 path = "/home/phudit/personal/env-aesthetics/background/portejoie-on-the-seine.jpg"
 
 [shell]
-font_family = "CaskaydiaMono Nerd Font"
+font_family = "Google Sans Flex"
 
 [shell.greeter_sync]
 auto_sync = true
@@ -33,6 +33,7 @@ tint_intensity  = 0.3
 media = false
 
 [bar.default]
+font_family = "CaskaydiaMono Nerd Font"
 margin_ends        = 0
 radius             = 0
 scale              = 0.8
