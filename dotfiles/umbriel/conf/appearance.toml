@@ -1,0 +1,5 @@
+[appearance]
+corner_radius = 0
+
+[appearance.blur]
+radius = 3

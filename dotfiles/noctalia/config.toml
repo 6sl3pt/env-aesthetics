@@ -6,7 +6,7 @@ wallpaper_scheme = "m3-content"
 
 [theme.templates]
 enable_builtin_templates   = true
-builtin_ids                = [ "btop", "kitty", "niri", ]
+builtin_ids                = [ "btop", "kitty", "niri", "umbriel", ]
 enable_community_templates = true
 community_ids              = [ "zen-browser", ]
 
@@ -21,10 +21,16 @@ path = "/home/phudit/personal/env-aesthetics/background/portejoie-on-the-seine.j
 [shell]
 font_family = "CaskaydiaMono Nerd Font"
 
+[shell.greeter_sync]
+auto_sync = true
+
 [backdrop]
 enabled         = true
 blur_intensity  = 0.5
 tint_intensity  = 0.3
+
+[osd.kind]
+media = false
 
 [bar.default]
 margin_ends        = 0
@@ -61,3 +67,9 @@ color = "primary"
 
 [widget.workspaces]
 style = "minimal"
+
+[include]
+autoload = false
+files = [
+  "profiles/hw-laptop.toml"
+]

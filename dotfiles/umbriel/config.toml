@@ -1,0 +1,129 @@
+# ==============================================================================
+# Includes
+
+[include]
+files = [
+  "conf/appearance.toml",
+  "conf/keybinds.toml",
+  "conf/layout.toml",
+  "conf/rules.toml"
+]
+
+[include.optional]
+files = ["noctalia.toml"]
+
+# ==============================================================================
+# General
+
+[general]
+autostart = ["noctalia", "kitty"]
+mod_key = "Alt"
+xwayland = true
+xwayland_native_resolution = false
+xwayland_xsettings = true
+show_cheatsheet = true
+focus_on_activate = false
+honor_restored_maximize = false
+
+# ==============================================================================
+# Lid events
+
+# Remove the laptop panel from the desktop while the lid is closed, then
+# restore it when the lid opens. Replace eDP-1 with the name from
+# `umbriel outputs`.
+# https://docs.noctalia.dev/umbriel/configuration/#events
+# [events]
+# lid_close = "umbriel msg output-disable:eDP-1"
+# lid_open = "umbriel msg output-enable:eDP-1"
+
+# ==============================================================================
+# Screencast
+
+# By default, the first target-changing action during an active share asks for
+# confirmation. Disable that protection only if immediate keybind changes are
+# preferred.
+# https://docs.noctalia.dev/umbriel/configuration/#screencast
+# [screencast]
+# disable_dynamic_confirmation = true
+
+# ==============================================================================
+# Outputs
+
+# Outputs are machine-specific. Run `umbriel outputs` to find names and modes.
+# https://docs.noctalia.dev/umbriel/outputs/
+#
+# [output.DP-1]
+# mode = "2560x1440@144"
+# position = [0, 0]
+# scale = 1.25
+# vrr = "fullscreen"
+# hdr = "auto"
+
+# ==============================================================================
+# Effects
+# Every effect is off until a preset is selected; border and window effects
+# scale with overview zoom. Include a bundled preset (adjust /usr for the
+# package prefix), then select it by name.
+# https://docs.noctalia.dev/umbriel/effects/
+# [include]
+# files = ["/usr/share/umbriel/effects/border/pulse/effect.toml"]
+# For a cursor tail, include /usr/share/umbriel/effects/cursor/trail/effect.toml
+# and set cursor = "trail" in [effects].
+# For audio-reactive borders, include /usr/share/umbriel/effects/border/audio/effect.toml
+# and set border = "audio" in [effects].
+# Enable Noctalia's Umbriel audio provider in its shell settings, or supply an
+# external effect-audio v2 producer with 64 spectrum bands. Umbriel does not capture audio.
+# Pools accept matching presets defined/included separately. This one-member
+# example uses the bundled pulse preset; add other border names to choose.
+# [effects.pool.borders]
+# kind = "border"
+# choose = ["pulse"]
+# selection = "unused_first" # or round_robin, random
+# Select with border = "borders" in your [effects] table.
+# Add to your existing [keybinds] table:
+# "Mod+Shift+E" = "effect-border-cycle:borders"
+# "Mod+Ctrl+E" = "effect-border-toggle"
+# "Mod+Alt+E" = "effect-border-reset"
+
+# [effects]
+# border = "pulse"
+
+# ==============================================================================
+# Input
+[input.keyboard]
+numlock_toggle = true
+layout = "us,th"
+track_layout = "global"
+
+[input.cursor]
+theme = "Bibata-Modern-Classic"
+size = 24
+follows_focus = true
+
+# Focus can follow the pointer across tiled, floating, and pinned windows.
+# [input.focus]
+# follows_mouse = true
+
+# Confine touch input to one display.
+# [input.touch]
+# enabled = true
+# map_to_output = "eDP-1"
+
+# ==============================================================================
+# Overview
+# Built-in overview and animation values are used. The top-left hot corner opens
+# the overview after a short delay.
+# Overview: https://docs.noctalia.dev/umbriel/workspaces-overview/
+# Animation: https://docs.noctalia.dev/umbriel/animation/
+[hot_corners.top_left]
+enabled = true
+delay_ms = 500
+action = "overview-open"
+
+# Optional live workspace reveal (see docs/user/animation.md).
+# Add the bundled effects/animation/workspace_wipe/effect.toml to your includes.
+# [animation.workspaces]
+# style = "reveal"          # Default: "slide"
+# effect = "workspace_wipe"
+# duration_ms = 300
+# curve = "easeout"

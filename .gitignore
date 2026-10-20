@@ -14,6 +14,7 @@ dotfiles/tmux/current-theme.conf
 dotfiles/btop/themes/noctalia.theme
 dotfiles/kitty/themes/
 dotfiles/niri/noctalia.kdl
+dotfiles/umbriel/noctalia.toml
 
 # NixOS
 result
