@@ -19,6 +19,7 @@
         self.nixosModules.noctalia
         self.nixosModules.noctalia-greeter
         self.nixosModules.nvim
+        self.nixosModules.pcmanfm-qt
         self.nixosModules.secrets
         self.nixosModules.shell
         self.nixosModules.spicetify
@@ -60,8 +61,8 @@
         options = "grp:win_space_toggle";
       };
 
+      security.polkit.enable = true;
       services.pulseaudio.enable = false;
-      security.rtkit.enable = true;
       services.pipewire = {
         enable = true;
         alsa.enable = true;
@@ -87,6 +88,8 @@
         user = "phudit";
         source = "/home/phudit/personal/env-aesthetics/dotfiles";
       };
+
+      my.pcmanfm.user = "phudit";
 
       my.secrets = {
         user = "phudit";

@@ -2,10 +2,11 @@
 
 # Applications and session
 "Mod+Return" = { action = "spawn:kitty", repeat = false }
-"Mod+D" = "spawn:noctalia msg panel-toggle launcher"
-"Mod+Q" = { action = "window-close", repeat = false }
 "Mod+B" = "spawn:zen"
 "Mod+Shift+B" = "spawn:zen --private-window"
+"Mod+D" = "spawn:noctalia msg panel-toggle launcher"
+"Mod+E" = "spawn:pcmanfm-qt"
+"Mod+Q" = { action = "window-close", repeat = false }
 "Mod+S" = "spawn:spotify"
 "Mod+Escape" = "session-quit"
 "Mod+Shift+Escape" = { action = "shortcuts-inhibit-toggle", allow_when_inhibited = true, repeat = false }

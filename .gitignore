@@ -13,6 +13,8 @@ dotfiles/tmux/current-theme.conf
 # Noctalia automated themes
 dotfiles/btop/themes/noctalia.theme
 dotfiles/kitty/themes/
+dotfiles/qt6ct/*
+!dotfiles/qt6ct/qt6ct.conf
 dotfiles/niri/noctalia.kdl
 dotfiles/umbriel/noctalia.toml
 

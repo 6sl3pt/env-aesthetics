@@ -6,7 +6,7 @@ wallpaper_scheme = "m3-content"
 
 [theme.templates]
 enable_builtin_templates   = true
-builtin_ids                = [ "btop", "kitty", "niri", "umbriel", ]
+builtin_ids                = [ "btop", "kitty", "niri", "qt", "umbriel", ]
 enable_community_templates = true
 community_ids              = [ "zen-browser", ]
 
@@ -68,6 +68,11 @@ color = "primary"
 
 [widget.workspaces]
 style = "minimal"
+
+[theme.templates.user.noctalia-colloid]
+input_path  = "~/.config/noctalia/templates/Noctalia-Colloid.sh"
+output_path = "~/.cache/noctalia/Noctalia-Colloid-apply.sh"
+post_hook   = "bash ~/.cache/noctalia/Noctalia-Colloid-apply.sh"
 
 [include]
 autoload = false

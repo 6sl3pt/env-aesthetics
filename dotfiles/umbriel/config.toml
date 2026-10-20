@@ -127,3 +127,9 @@ action = "overview-open"
 # effect = "workspace_wipe"
 # duration_ms = 300
 # curve = "easeout"
+
+# ==============================================================================
+# Environment
+[environment]
+QT_QPA_PLATFORM = "wayland"
+QT_QPA_PLATFORMTHEME = "qt6ct"
