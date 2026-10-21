@@ -1,0 +1,24 @@
+---
+- name: Deploy gitconfig file
+  ansible.builtin.copy:
+    src: gitconfig
+    dest: '/home/{{ target_username }}/.gitconfig'
+    owner: '{{ target_username }}'
+    group: '{{ target_username }}'
+    mode: '0644'
+
+- name: Ensure user git config directory exists
+  ansible.builtin.file:
+    path: '/home/{{ target_username }}/.config/git'
+    state: directory
+    owner: '{{ target_username }}'
+    group: '{{ target_username }}'
+    mode: '0755'
+
+- name: Deploy gitconfig file
+  ansible.builtin.copy:
+    src: personal-gitconfig
+    dest: '/home/{{ target_username }}/.config/git/.personal.gitconfig'
+    owner: '{{ target_username }}'
+    group: '{{ target_username }}'
+    mode: '0644'

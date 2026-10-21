@@ -1,0 +1,24 @@
+---
+- name: Configure PolicyKit and systemd agent
+  ansible.builtin.include_tasks: polkit.yaml
+
+- name: Install custom fonts
+  ansible.builtin.include_tasks: fonts.yaml
+
+- name: Install and configure Noctalia
+  ansible.builtin.include_tasks: noctalia.yaml
+
+- name: Install other packages
+  ansible.builtin.include_tasks: packages.yaml
+
+- name: Install Neovim and related packages
+  ansible.builtin.include_tasks: nvim.yaml
+
+- name: Configure PCManFM Noctalia integration
+  ansible.builtin.include_tasks: pcmanfm.yaml
+
+- name: Enable and start greetd systemd service
+  ansible.builtin.systemd:
+    name: greetd.service
+    enabled: yes
+    state: started

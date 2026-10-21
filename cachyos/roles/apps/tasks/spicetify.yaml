@@ -1,0 +1,103 @@
+---
+- name: Install spotify-launcher
+  community.general.pacman:
+    name: spotify-launcher
+    state: present
+    update_cache: true
+
+- name: Initialize spotify-launcher
+  ansible.builtin.command: spotify-launcher --no-exec
+  become: true
+  become_user: '{{ target_username }}'
+  environment:
+    HOME: '/home/{{ target_username }}'
+  args:
+    creates: '/home/{{ target_username }}/.local/share/spotify-launcher/install/usr/share/spotify'
+
+- name: Install packages via yay
+  ansible.builtin.shell: |
+    yay -Syu --noconfirm --needed spicetify-cli
+  become: true
+  become_user: aurbuilder
+  environment:
+    HOME: '/home/aurbuilder'
+
+- name: Config spicetify path
+  ansible.builtin.command:
+    cmd:
+      spicetify config spotify_path
+      "$HOME/.local/share/spotify-launcher/install/usr/share/spotify"
+  become: true
+  become_user: '{{ target_username }}'
+  environment:
+    HOME: '/home/{{ target_username }}'
+
+- name: Ensure spicetify temp directory exists
+  ansible.builtin.file:
+    path: '/tmp/spicetify-comfy'
+    state: directory
+    owner: '{{ target_username }}'
+    group: '{{ target_username }}'
+    mode: '0755'
+
+- name: Clone spicetify theme repository
+  ansible.builtin.git:
+    repo: 'https://github.com/Comfy-Themes/Spicetify.git'
+    dest: '/tmp/spicetify-comfy'
+    version: main
+  become: true
+  become_user: '{{ target_username }}'
+  environment:
+    HOME: '/home/{{ target_username }}'
+
+- name: Ensure spicetify theme directory exists
+  ansible.builtin.file:
+    path: '/home/{{ target_username }}/.config/spicetify/Themes'
+    state: directory
+    owner: '{{ target_username }}'
+    group: '{{ target_username }}'
+    mode: '0755'
+
+- name: Copy spicetify theme
+  ansible.builtin.copy:
+    src: /tmp/spicetify-comfy/Comfy
+    dest: '/home/{{ target_username }}/.config/spicetify/Themes/Comfy'
+    owner: '{{ target_username }}'
+    group: '{{ target_username }}'
+    mode: '0644'
+
+- name: Config spicetify theme
+  ansible.builtin.command:
+    spicetify config current_theme Comfy color_scheme Comfy
+  become: true
+  become_user: '{{ target_username }}'
+  environment:
+    HOME: '/home/{{ target_username }}'
+
+- name: Config spicetify theme properties
+  ansible.builtin.command:
+    spicetify config inject_css 1 replace_colors 1 overwrite_assets 1
+    inject_theme_js 1
+  become: true
+  become_user: '{{ target_username }}'
+  environment:
+    HOME: '/home/{{ target_username }}'
+
+- name: Config spicetify extensions
+  ansible.builtin.command: spicetify config extensions shuffle+.js
+  become: true
+  become_user: '{{ target_username }}'
+  environment:
+    HOME: '/home/{{ target_username }}'
+
+- name: Apply spicetify configuration
+  ansible.builtin.command: spicetify backup apply
+  become: true
+  become_user: '{{ target_username }}'
+  environment:
+    HOME: '/home/{{ target_username }}'
+
+- name: Remove spicetify temp directory exists
+  ansible.builtin.file:
+    path: '/tmp/spicetify-comfy'
+    state: absent

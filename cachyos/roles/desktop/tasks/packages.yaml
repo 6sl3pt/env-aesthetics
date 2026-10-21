@@ -1,0 +1,53 @@
+---
+- name: Install packages via pacman
+  community.general.pacman:
+    name:
+      - btop
+      - cachyos-gaming-meta
+      - cachyos-gaming-applications
+      - fastfetch
+      - gnome-disk-utility
+      - keepassxc
+      - kitty
+      - starship
+      - thunderbird
+      - tmux
+      - ttf-cascadia-mono-nerd
+      - unzip
+      - vesktop-bin
+      - vim
+      - yay
+      - zen-browser
+    state: present
+    update_cache: true
+
+- name: Create AUR builder user
+  ansible.builtin.user:
+    name: aurbuilder
+    group: wheel
+    create_home: true
+
+- name: Allow arcbuilder to use pacman without password
+  ansible.builtin.lineinfile:
+    path: '/etc/sudoers.d/aurbuilder'
+    line: 'aurbuilder ALL=(ALL) NOPASSWD: /usr/bin/pacman'
+    create: true
+    mode: '0440'
+    validate: 'visudo -cf %s'
+
+- name: Install packages via yay
+  ansible.builtin.shell: |
+    yay -Syu --noconfirm --needed \
+      bibata-cursor-theme
+  become: true
+  become_user: aurbuilder
+  environment:
+    HOME: '/home/aurbuilder'
+
+- name: Deploy bashrc file
+  ansible.builtin.copy:
+    src: .bashrc
+    dest: '/home/{{ target_username }}/.bashrc'
+    owner: '{{ target_username }}'
+    group: '{{ target_username }}'
+    mode: '0644'

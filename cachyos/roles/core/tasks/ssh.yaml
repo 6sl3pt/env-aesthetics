@@ -1,0 +1,21 @@
+---
+- name: Install openssh
+  community.general.pacman:
+    name: openssh
+    state: present
+
+- name: Ensure user SSH directory exists
+  ansible.builtin.file:
+    path: '/home/{{ target_username }}/.ssh'
+    state: directory
+    owner: '{{ target_username }}'
+    group: '{{ target_username }}'
+    mode: '0755'
+
+- name: Deploy SSH config file
+  ansible.builtin.copy:
+    src: sshconfig
+    dest: '/home/{{ target_username }}/.ssh/config'
+    owner: '{{ target_username }}'
+    group: '{{ target_username }}'
+    mode: '0600'

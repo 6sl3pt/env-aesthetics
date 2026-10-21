@@ -1,0 +1,16 @@
+---
+- name: Install Neovim and related packages
+  community.general.pacman:
+    name:
+      - eza
+      - fd
+      - fzf
+      - gcc
+      - lua-language-server
+      - neovim
+      - nodejs
+      - npm
+      - ripgrep
+      - tree-sitter
+    state: present
+    update_cache: true

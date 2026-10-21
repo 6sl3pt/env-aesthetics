@@ -1,0 +1,46 @@
+---
+- name: Install fonts via pacman
+  community.general.pacman:
+    name:
+      - noto-fonts-emoji
+      - ttf-cascadia-mono-nerd
+    state: present
+    update_cache: true
+
+- name: Install fonts via yay
+  ansible.builtin.shell: |
+    yay -Syu --noconfirm --needed \
+      undefined-medium-fonts
+  become: true
+  become_user: aurbuilder
+  environment:
+    HOME: '/home/aurbuilder'
+
+- name: Ensure custom fonts directory existed
+  ansible.builtin.file:
+    path: '/usr/share/fonts/custom'
+    state: directory
+    mode: '0755'
+
+- name: Download Google Sans Flex
+  ansible.builtin.get_url:
+    url: 'https://fonts.gstatic.com/s/googlesansflex/v23/t5svIQcYNIWbFgDgAAzZ34auoVyXkJCOvp3SFWJbN5hF8Ju1x6sKCyp0l9sI40swNJwGpVd4AZzz0v6lJ4qFXNZhGjLvDSkV4W6pGn9C3w.woff2'
+    dest: '/usr/share/fonts/custom/GoogleSansFlex.woff2'
+    mode: '0644'
+
+- name: Download IBM Plex Sans Thai Regular
+  ansible.builtin.get_url:
+    url: 'https://fonts.gstatic.com/s/ibmplexsansthai/v11/m8JPje1VVIzcq1HzJq2AEdo2Tj_qvLqMHdYgVcM.woff2'
+    dest: '/usr/share/fonts/custom/IBMPlexSansThai-Regular.woff2'
+    mode: '0644'
+
+- name: Download IBM Plex Sans Thai Bold
+  ansible.builtin.get_url:
+    url: 'https://fonts.gstatic.com/s/ibmplexsansthai/v11/m8JMje1VVIzcq1HzJq2AEdo2Tj_qvLqEsvM1fuJHa74.woff2'
+    dest: '/usr/share/fonts/custom/IBMPlexSansThai-Bold.woff2'
+    mode: '0644'
+
+- name: Refresh system font cache
+  ansible.builtin.command:
+    cmd: fc-cache -f -v
+  changed_when: true

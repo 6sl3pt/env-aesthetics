@@ -1,0 +1,34 @@
+---
+- name: Install stow
+  community.general.pacman:
+    name: stow
+    state: present
+
+- name: Ensure user config directory exists
+  ansible.builtin.file:
+    path: '/home/{{ target_username }}/.config'
+    state: directory
+    owner: '{{ target_username }}'
+    group: '{{ target_username }}'
+    mode: '0755'
+
+- name: Ensure dotfiles directory exists
+  ansible.builtin.stat:
+    path: '/home/{{ target_username }}/personal/env-aesthetics/dotfiles'
+  register: folder_status
+
+- name: Fail if folder does not exist
+  ansible.builtin.assert:
+    that:
+      - folder_status.stat.exists
+      - folder_status.stat.isdir
+    fail_msg: 'Playbook stopped: dotfiles does not exist or is not a directory.'
+
+- name: Stow dotfiles
+  ansible.builtin.command:
+    cmd: stow -t "$HOME/.config" .
+    chdir: '/home/{{ target_username }}/personal/env-aesthetics/dotfiles'
+  become: true
+  become_user: '{{ target_username }}'
+  environment:
+    HOME: '/home/{{ target_username }}'

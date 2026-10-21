@@ -1,0 +1,20 @@
+---
+- name: Check if target user exists on the system
+  ansible.builtin.getent:
+    database: passwd
+    key: '{{ target_username }}'
+
+- name: Add custom hosts mapping
+  ansible.builtin.lineinfile:
+    path: /etc/hosts
+    line: '10.134.20.103  dns.6541333.xyz'
+    state: present
+
+- name: Install and config SSH
+  ansible.builtin.include_tasks: ssh.yaml
+
+- name: Git configuration
+  ansible.builtin.include_tasks: gitconfig.yaml
+
+- name: Install stow and create dotfiles symlinks
+  ansible.builtin.include_tasks: stow.yaml

@@ -1,0 +1,99 @@
+---
+- name: Install PCManFM and related packages
+  community.general.pacman:
+    name:
+      - lxmenu-data
+      - pcmanfm-qt
+      - qt6ct
+      - shared-mime-info
+    state: present
+    update_cache: true
+
+- name: Ensure PCManFM XDG directory exists
+  ansible.builtin.file:
+    path: '/etc/xdg/pcmanfm-qt'
+    state: directory
+    mode: '0755'
+
+- name: Deploy PCManFM configuration file
+  ansible.builtin.copy:
+    src: pcmanfm.conf
+    dest: '/etc/xdg/pcmanfm-qt/settings.conf'
+    mode: '0644'
+
+- name: Ensure user icon directory exists
+  ansible.builtin.file:
+    path: '/home/{{ target_username }}/.local/share/icons'
+    state: directory
+    owner: '{{ target_username }}'
+    group: '{{ target_username }}'
+    mode: '0755'
+
+- name: Ensure icon temp directory exists
+  ansible.builtin.file:
+    path: '/home/{{ target_username }}/.cache/noctalia/colloid-icon-themes'
+    state: directory
+    owner: '{{ target_username }}'
+    group: '{{ target_username }}'
+    mode: '0755'
+
+- name: Clone icon repository
+  ansible.builtin.git:
+    repo: 'https://github.com/vinceliuice/Colloid-icon-theme.git'
+    dest: '/home/{{ target_username }}/.cache/noctalia/colloid-icon-themes'
+    version: main
+    depth: 1
+  become: true
+  become_user: '{{ target_username }}'
+  environment:
+    HOME: '/home/{{ target_username }}'
+
+- name: Install colloid icon themes
+  ansible.builtin.shell: |
+    "/home/{{ target_username }}/.cache/noctalia/colloid-icon-themes/install.sh" \
+    -d "/home/{{ target_username }}/.local/share/icons" \
+    -n "Noctalia-Colloid" \
+    -t default \
+    -s default
+  become: true
+  become_user: '{{ target_username }}'
+  environment:
+    HOME: '/home/{{ target_username }}'
+  args:
+    executable: /bin/bash
+
+- name: Copy icon directory to temp
+  ansible.builtin.copy:
+    src: '/home/{{ target_username }}/.local/share/icons/Noctalia-Colloid'
+    dest: '/home/{{ target_username }}/.local/share/icons/Noctalia-Colloid-tmp'
+    owner: '{{ target_username }}'
+    group: '{{ target_username }}'
+    mode: '0644'
+
+- name: Delete icon directory
+  ansible.builtin.file:
+    path: '/home/{{ target_username }}/.local/share/icons/Noctalia-Colloid'
+    state: absent
+
+- name: Move icon temp directory to icon directory
+  ansible.builtin.shell: |
+    mv "/home/{{ target_username }}/.local/share/icons/Noctalia-Colloid-tmp" \
+    "/home/{{ target_username }}/.local/share/icons/Noctalia-Colloid"
+
+- name: Cleanup unused icon directories
+  ansible.builtin.shell: |
+    rm -rf "/home/{{ target_username }}/.local/share/icons/Noctalia-Colloid-Dark" \
+    "/home/{{ target_username }}/.local/share/icons/Noctalia-Colloid-light" \
+    "/home/{{ target_username }}/.local/share/icons/Noctalia-Colloid-Dark" \
+    "/home/{{ target_username }}/.local/share/icons/Noctalia-Colloid-Light"
+
+- name: Reinitialize Git repository and update icon cache
+  ansible.builtin.shell: |
+    rm -rf .git
+    git init -q
+    git add .
+    git commit --no-verify -q -m 'original'
+    git tag -f 'original'
+    gtk-update-icon-cache -f -t "/home/{{ target_username }}/.local/share/icons/Noctalia-Colloid"
+  args:
+    executable: /bin/bash

@@ -1,0 +1,53 @@
+---
+- name: Install Noctalia suite packages
+  community.general.pacman:
+    name:
+      - greetd
+      - noctalia
+      - noctalia-greeter
+      - umbriel
+      - xwayland-satellite
+    state: present
+    update_cache: true
+
+- name: Deploy Noctalia current profile
+  ansible.builtin.copy:
+    src: noctalia-profile.toml
+    dest: '/home/{{ target_username }}/.config/noctalia/profiles/current.toml'
+    owner: '{{ target_username }}'
+    group: '{{ target_username }}'
+    mode: '0644'
+
+- name: Ensure user systemd directory exists
+  ansible.builtin.file:
+    path: '/home/{{ target_username }}/.config/systemd/user'
+    state: directory
+    owner: '{{ target_username }}'
+    group: '{{ target_username }}'
+    mode: '0755'
+
+- name: Deploy greetd configuration file
+  ansible.builtin.copy:
+    src: greetd.toml
+    dest: '/etc/greetd/config.toml'
+    mode: '0644'
+
+- name: Create systemd-tmpfiles for noctalia-greeter
+  ansible.builtin.command: systemd-tmpfiles --create noctalia-greeter.conf
+
+- name: Apply noctalia-greeter system appearance setup
+  ansible.builtin.command: noctalia-greeter-apply-appearance --setup-system
+
+- name: Deploy Noctalia Greeter configuration file
+  ansible.builtin.template:
+    src: noctalia-greeter.toml.j2
+    dest: '/var/lib/noctalia-greeter/greeter.toml'
+    mode: '0644'
+
+- name: Enable passwordless sync for user
+  ansible.builtin.command:
+    noctalia-greeter passwordless-sync enable {{ target_username }}
+  register: passwordless_sync_result
+  changed_when:
+    "'Enabled' in passwordless_sync_result.stdout or passwordless_sync_result.rc
+    == 0"

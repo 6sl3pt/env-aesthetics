@@ -1,0 +1,34 @@
+---
+- name: Install lxqt-policykit
+  community.general.pacman:
+    name: lxqt-policykit
+    state: present
+
+- name: Ensure user systemd directory exists
+  ansible.builtin.file:
+    path: '/home/{{ target_username }}/.config/systemd/user'
+    state: directory
+    owner: '{{ target_username }}'
+    group: '{{ target_username }}'
+    mode: '0755'
+
+- name: Deploy lxqt-policykit systemd service file
+  ansible.builtin.copy:
+    src: lxqt-policykit.service
+    dest:
+      '/home/{{ target_username }}/.config/systemd/user/lxqt-policykit.service'
+    owner: '{{ target_username }}'
+    group: '{{ target_username }}'
+    mode: '0644'
+
+- name: Enable and start user lxqt-policykit systemd service
+  ansible.builtin.systemd:
+    name: lxqt-policykit.service
+    scope: user
+    enabled: yes
+    state: started
+    daemon_reload: true
+  become: true
+  become_user: '{{ target_username }}'
+  environment:
+    HOME: '/home/{{ target_username }}'

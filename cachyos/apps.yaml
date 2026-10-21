@@ -1,0 +1,10 @@
+---
+- name: Setup CachyOS applications
+  hosts: localhost
+  connection: local
+  become: yes
+  vars:
+    ansible_python_interpreter: '/usr/bin/python3.14'
+    target_username: 'phudit'
+  roles:
+    - apps
