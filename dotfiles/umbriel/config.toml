@@ -49,6 +49,16 @@ honor_restored_maximize = false
 # ==============================================================================
 # Outputs
 
+[output."Acer Technologies XB273U X2 3628027824201"]
+mode = "2560x1440@200"
+min_workspaces = 5
+position = [0, 0]
+
+[output."LG Electronics LG ULTRAGEAR 0x0001A5CE"]
+mode = "1920x1080@144"
+transform = "270"
+workspace_axis = "horizontal"
+
 [output."Chimei Innolux Corporation 0x1404 Unknown"]
 mode = "1920x1080@60"
 scale = 1.0

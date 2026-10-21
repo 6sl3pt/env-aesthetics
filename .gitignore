@@ -16,6 +16,7 @@ dotfiles/kitty/themes/
 dotfiles/qt6ct/*
 !dotfiles/qt6ct/qt6ct.conf
 dotfiles/niri/noctalia.kdl
+dotfiles/noctalia/profiles/current.toml
 dotfiles/umbriel/noctalia.toml
 dotfiles/vesktop/*
 !/dotfiles/vesktop/settings/

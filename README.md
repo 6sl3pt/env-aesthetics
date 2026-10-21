@@ -62,6 +62,16 @@ This will prevent Niri from rendering cursor, so that you can use Windows cursor
 
 ### Noctalia
 
+**Machine Profile**
+
+To select profile, create file `dotfiles/noctalia/profiles/current.toml`, then config the profile import: 
+
+```toml
+[include]
+autoload = false
+files = ["<profile>.toml"]
+```
+
 **Qt Dynamic Icons**
 
 Utilizes Nix's `activationScripts` to clone the icon repository and create an original branch.
