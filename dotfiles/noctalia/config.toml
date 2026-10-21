@@ -29,7 +29,7 @@ enabled         = true
 blur_intensity  = 0.5
 tint_intensity  = 0.3
 
-[osd.kind]
+[osd.kinds]
 media = false
 
 [bar.default]
@@ -49,7 +49,12 @@ end = [
     "battery",
     "session"
 ]
-start = [ "control-center", "workspaces", "media" ]
+start = [
+  "control-center",
+  "workspaces",
+  "media",
+  "audio_visualizer"
+]
 
 [battery]
 warning_threshold = 20
@@ -62,6 +67,9 @@ color = "primary"
 
 [widget.media]
 hide_when_no_media = true
+
+[widget.notifications]
+hide_when_no_unread = true
 
 [widget.session]
 color = "primary"

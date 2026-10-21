@@ -3,13 +3,14 @@
 # Applications and session
 "Mod+Return" = { action = "spawn:kitty", repeat = false }
 "Mod+Shift+Return" = { action = "spawn:kitty tmux new-session -A -s kitty", repeat = false }
-"Mod+B" = "spawn:zen"
-"Mod+Shift+B" = "spawn:zen --private-window"
-"Mod+Shift+D" = "spawn:vesktop"
-"Mod+E" = "spawn:pcmanfm-qt"
-"Mod+Shift+E" = "spawn:thunderbird"
-"Mod+Shift+M" = "spawn:spotify"
-"Mod+Shift+Slash" = "spawn:keepassxc"
+"Mod+B" = { action = "spawn:zen", repeat = false }
+"Mod+Shift+B" = { action = "spawn:zen --private-window", repeat = false }
+"Mod+Shift+D" = { action = "spawn:vesktop", repeat = false }
+"Mod+E" = { action = "spawn:pcmanfm-qt", repeat = false }
+"Mod+Shift+E" = { action = "spawn:thunderbird", repeat = false }
+"Mod+Shift+M" = { action = "spawn:spotify", repeat = false }
+"Mod+Ctrl+T" = { action = "spawn:kitty btop", repeat = false }
+"Mod+Shift+Slash" = { action = "spawn:keepassxc", repeat = false }
 "Mod+Shift+Escape" = { action = "shortcuts-inhibit-toggle", allow_when_inhibited = true, repeat = false }
 
 # Noctalia specific
