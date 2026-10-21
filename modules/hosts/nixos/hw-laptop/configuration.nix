@@ -15,6 +15,7 @@
         self.nixosModules.emacs
         self.nixosModules.fonts
         self.nixosModules.git
+        self.nixosModules.keepassxc
         self.nixosModules.kitty
         self.nixosModules.noctalia
         self.nixosModules.noctalia-greeter
