@@ -87,11 +87,8 @@
                 rm -rf .git
                 git init -q
 
-                git config user.name 'Noctalia Automator'
-                git config user.email 'noctalia@local.invalid'
-
                 git add .
-                git commit --no-verify -q -m 'original'
+                git -c user.name='noctaliatemplate' -c user.email='noctalia@temp' commit --no-verify -q -m 'original'
                 git tag -f 'original'
 
                 gtk-update-icon-cache -f -t "$THEME_DIR"

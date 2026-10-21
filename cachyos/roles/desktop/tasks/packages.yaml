@@ -21,20 +21,6 @@
     state: present
     update_cache: true
 
-- name: Create AUR builder user
-  ansible.builtin.user:
-    name: aurbuilder
-    group: wheel
-    create_home: true
-
-- name: Allow arcbuilder to use pacman without password
-  ansible.builtin.lineinfile:
-    path: '/etc/sudoers.d/aurbuilder'
-    line: 'aurbuilder ALL=(ALL) NOPASSWD: /usr/bin/pacman'
-    create: true
-    mode: '0440'
-    validate: 'visudo -cf %s'
-
 - name: Install packages via yay
   ansible.builtin.shell: |
     yay -Syu --noconfirm --needed \

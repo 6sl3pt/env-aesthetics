@@ -1,0 +1,22 @@
+---
+- name: Create AUR builder user
+  ansible.builtin.user:
+    name: aurbuilder
+    group: wheel
+    create_home: true
+
+- name: Allow arcbuilder to use pacman without password
+  ansible.builtin.lineinfile:
+    path: '/etc/sudoers.d/aurbuilder'
+    line: 'aurbuilder ALL=(ALL) NOPASSWD: /usr/bin/pacman'
+    create: true
+    mode: '0440'
+    validate: 'visudo -cf %s'
+
+- name: Ensure ansible temp directory existed
+  ansible.builtin.file:
+    path: '/home/aurbuilder/.ansible/tmp'
+    state: directory
+    owner: 'aurbuilder'
+    group: 'users'
+    mode: '0755'

@@ -18,7 +18,7 @@
 - name: Deploy PCManFM configuration file
   ansible.builtin.copy:
     src: pcmanfm.conf
-    dest: '/etc/xdg/pcmanfm-qt/settings.conf'
+    dest: '/home/{{ target_username }}/.config/pcmanfm-qt/default/settings.conf'
     mode: '0644'
 
 - name: Ensure user icon directory exists
@@ -62,38 +62,36 @@
   args:
     executable: /bin/bash
 
-- name: Copy icon directory to temp
-  ansible.builtin.copy:
-    src: '/home/{{ target_username }}/.local/share/icons/Noctalia-Colloid'
-    dest: '/home/{{ target_username }}/.local/share/icons/Noctalia-Colloid-tmp'
-    owner: '{{ target_username }}'
-    group: '{{ target_username }}'
-    mode: '0644'
-
-- name: Delete icon directory
-  ansible.builtin.file:
-    path: '/home/{{ target_username }}/.local/share/icons/Noctalia-Colloid'
-    state: absent
-
-- name: Move icon temp directory to icon directory
+- name: Cleanup icon repository
   ansible.builtin.shell: |
-    mv "/home/{{ target_username }}/.local/share/icons/Noctalia-Colloid-tmp" \
-    "/home/{{ target_username }}/.local/share/icons/Noctalia-Colloid"
+    rm -rf .git .github
+  args:
+    chdir: '/home/{{ target_username }}/.local/share/icons/Noctalia-Colloid'
+
+- name: Flatten icon theme and replace original directory
+  ansible.builtin.shell: |
+    cp -rL "Noctalia-Colloid" "Noctalia-Colloid-tmp" 2>/dev/null || true
+    rm -rf "Noctalia-Colloid"
+    mv "Noctalia-Colloid-tmp" "Noctalia-Colloid"
+  args:
+    chdir: '/home/{{ target_username }}/.local/share/icons'
 
 - name: Cleanup unused icon directories
   ansible.builtin.shell: |
-    rm -rf "/home/{{ target_username }}/.local/share/icons/Noctalia-Colloid-Dark" \
-    "/home/{{ target_username }}/.local/share/icons/Noctalia-Colloid-light" \
-    "/home/{{ target_username }}/.local/share/icons/Noctalia-Colloid-Dark" \
-    "/home/{{ target_username }}/.local/share/icons/Noctalia-Colloid-Light"
+    rm -rf "Noctalia-Colloid-Dark" \
+    "Noctalia-Colloid-light" \
+    "Noctalia-Colloid-Dark" \
+    "Noctalia-Colloid-Light"
+  args:
+    chdir: '/home/{{ target_username }}/.local/share/icons'
 
 - name: Reinitialize Git repository and update icon cache
   ansible.builtin.shell: |
-    rm -rf .git
     git init -q
     git add .
-    git commit --no-verify -q -m 'original'
+    git -c user.name='noctaliatemplate' -c user.email='noctalia@temp' commit --no-verify -q -m 'original'
     git tag -f 'original'
     gtk-update-icon-cache -f -t "/home/{{ target_username }}/.local/share/icons/Noctalia-Colloid"
   args:
+    chdir: '/home/{{ target_username }}/.local/share/icons/Noctalia-Colloid'
     executable: /bin/bash
