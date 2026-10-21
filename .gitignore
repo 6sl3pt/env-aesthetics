@@ -17,6 +17,10 @@ dotfiles/qt6ct/*
 !dotfiles/qt6ct/qt6ct.conf
 dotfiles/niri/noctalia.kdl
 dotfiles/umbriel/noctalia.toml
+dotfiles/vesktop/*
+!/dotfiles/vesktop/settings/
+/dotfiles/vesktop/settings/*
+!dotfiles/vesktop/settings/quickCss.css
 
 # NixOS
 result

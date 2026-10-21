@@ -8,7 +8,7 @@ wallpaper_scheme = "m3-content"
 enable_builtin_templates   = true
 builtin_ids                = [ "btop", "kitty", "niri", "qt", "umbriel", ]
 enable_community_templates = true
-community_ids              = [ "zen-browser", ]
+community_ids              = [ "discord", "thunderbird", "zen-browser", ]
 
 [wallpaper]
 enabled   = true
@@ -38,7 +38,7 @@ margin_ends        = 0
 radius             = 0
 scale              = 0.8
 thickness          = 28
-background_opacity = 0.8
+background_opacity = 0.6
 end = [
     "tray",
     "notifications",

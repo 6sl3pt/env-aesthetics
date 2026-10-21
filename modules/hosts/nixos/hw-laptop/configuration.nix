@@ -25,7 +25,10 @@
         self.nixosModules.shell
         self.nixosModules.spicetify
         self.nixosModules.ssh
+        self.nixosModules.thunderbird
+        self.nixosModules.tmux
         self.nixosModules.umbriel
+        self.nixosModules.vesktop
         self.nixosModules.zen-browser
       ];
 
@@ -43,7 +46,7 @@
 
       time.timeZone = "Asia/Bangkok";
 
-      i18n.defaultLocale = "en_GB.UTF-8";
+      i18n.defaultLocale = "en_US.UTF-8";
 
       i18n.extraLocaleSettings = {
         LC_ADDRESS = "en_GB.UTF-8";

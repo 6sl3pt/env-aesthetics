@@ -2,14 +2,22 @@
 
 # Applications and session
 "Mod+Return" = { action = "spawn:kitty", repeat = false }
+"Mod+Shift+Return" = { action = "spawn:kitty tmux new-session -A -s kitty", repeat = false }
 "Mod+B" = "spawn:zen"
 "Mod+Shift+B" = "spawn:zen --private-window"
-"Mod+D" = "spawn:noctalia msg panel-toggle launcher"
+"Mod+Shift+D" = "spawn:vesktop"
 "Mod+E" = "spawn:pcmanfm-qt"
-"Mod+Q" = { action = "window-close", repeat = false }
-"Mod+S" = "spawn:spotify"
-"Mod+Escape" = "session-quit"
+"Mod+Shift+E" = "spawn:thunderbird"
+"Mod+Shift+M" = "spawn:spotify"
+"Mod+Shift+Slash" = "spawn:keepassxc"
 "Mod+Shift+Escape" = { action = "shortcuts-inhibit-toggle", allow_when_inhibited = true, repeat = false }
+
+# Noctalia specific
+"Mod+Shift+C" = "spawn:noctalia msg panel-toggle control-center calendar"
+"Mod+D" = "spawn:noctalia msg panel-toggle launcher"
+"Mod+S" = "spawn:noctalia msg settings-toggle"
+"Mod+W" = "spawn:noctalia msg panel-toggle wallpaper"
+"Mod+Escape" = "spawn:noctalia msg panel-toggle session"
 
 # Media, volume and brightness keys from any input device, routed through the
 "XF86AudioRaiseVolume" = { action = "spawn:noctalia msg volume-up", allow_when_locked = true }
@@ -37,6 +45,7 @@
 "Mod+Shift+Right" = "column-move-right"
 
 # Window state and layout
+"Mod+Q" = { action = "window-close", repeat = false }
 "Mod+T" = { action = "window-toggle-floating", repeat = false }
 "Mod+Shift+T" = { action = "window-focus-switch-floating", repeat = false }
 "Mod+P" = { action = "window-toggle-pinned", repeat = false }
@@ -51,7 +60,7 @@
 "Mod+Ctrl+Period" = "window-consume-from-right"
 # Needs layout.mode = "dwindle".
 # "Mod+Alt+T" = "layout-toggle-split"
-"Mod+W" = { action = "column-toggle-tabbed", repeat = false }
+# "Mod+W" = { action = "column-toggle-tabbed", repeat = false }
 "Mod+Alt+Right" = "column-focus-tab-next"
 "Mod+Alt+Left" = "column-focus-tab-previous"
 "Mod+WheelUp" = "window-focus-left"

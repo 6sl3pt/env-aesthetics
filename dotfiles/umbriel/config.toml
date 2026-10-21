@@ -21,7 +21,7 @@ mod_key = "Alt"
 xwayland = true
 xwayland_native_resolution = false
 xwayland_xsettings = true
-show_cheatsheet = true
+show_cheatsheet = false
 focus_on_activate = false
 honor_restored_maximize = false
 

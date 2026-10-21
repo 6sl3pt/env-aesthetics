@@ -1,4 +1,5 @@
 [appearance]
+border_width = 1
 corner_radius = 0
 
 [appearance.blur]
