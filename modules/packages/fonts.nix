@@ -7,9 +7,9 @@
         google-sans-flex = {
           fonts = [
             {
-              name = "GoogleSansFlex.woff2";
-              url = "https://fonts.gstatic.com/s/googlesansflex/v23/t5svIQcYNIWbFgDgAAzZ34auoVyXkJCOvp3SFWJbN5hF8Ju1x6sKCyp0l9sI40swNJwGpVd4AZzz0v6lJ4qFXNZhGjLvDSkV4W71Gn9C3w.woff2";
-              hash = "sha256-Zp7sd5G16NGPA3XUSfb+hseeNdr3Bb65+mP2lowyH4g=";
+              name = "GoogleSansFlex.tff";
+              url = "https://raw.githubusercontent.com/google/fonts/main/ofl/googlesansflex/GoogleSansFlex%5BROND%2Copsz%2Cslnt%2Cwdth%2Cwght%5D.ttf";
+              hash = "sha256-qax3B5iFfV6KxZPO1Csi5Ap8CM7Jgxn5Kw7Mwng6d7o=";
             }
           ];
         };
@@ -17,14 +17,14 @@
         ibm-plex-thai = {
           fonts = [
             {
-              name = "IBMPlexSansThai-Regular.woff2";
-              url = "https://fonts.gstatic.com/s/ibmplexsansthai/v11/m8JPje1VVIzcq1HzJq2AEdo2Tj_qvLqMHdYgVcM.woff2";
-              hash = "sha256-LWY4HCbTK/KpW/5VnRpe1Udfzaw/oSjkWjMwEBDUIFY=";
+              name = "IBMPlexSansThai-Regular.tff";
+              url = "https://raw.githubusercontent.com/google/fonts/main/ofl/ibmplexsansthai/IBMPlexSansThai-Regular.ttf";
+              hash = "sha256-7uBh0brDm+QPm7lEmImM0YlPXT2aLw7my9SKa9A9BSs=";
             }
             {
-              name = "IBMPlexSansThai-Bold.woff2";
-              url = "https://fonts.gstatic.com/s/ibmplexsansthai/v11/m8JMje1VVIzcq1HzJq2AEdo2Tj_qvLqEsvM1fuJHa74.woff2";
-              hash = "sha256-CGLkTAB2HaFvkpoHjSxtXtMCue74SxQ7wcWhyKOjGHg=";
+              name = "IBMPlexSansThai-Bold.tff";
+              url = "https://raw.githubusercontent.com/google/fonts/main/ofl/ibmplexsansthai/IBMPlexSansThai-Bold.ttf";
+              hash = "sha256-+I++CjcXyT3t30sT5QoFya3NOPWNZ12dXQuGmWGFFmc=";
             }
           ];
         };
@@ -33,13 +33,13 @@
           fonts = [
             {
               name = "IBMPlexSansThaiLooped-Regular.ttf";
-              url = "https://fonts.gstatic.com/s/ibmplexsansthailooped/v12/tss_AoJJRAhL3BTrK3r2xxbFhvKfyBB6l7hHT30LxBI.ttf";
-              hash = "sha256-KwT2WnXTwlM4Ozp/MH1DNlLf35WW0/K8IcwGhEzhyEs=";
+              url = "https://raw.githubusercontent.com/google/fonts/main/ofl/ibmplexsansthailooped/IBMPlexSansThaiLooped-Regular.ttf";
+              hash = "sha256-bXkQ0Tp6njOHLVUB/YGnH4TuUy9ym/tyxv+pTR8TAJ4=";
             }
             {
               name = "IBMPlexSansThaiLooped-Bold.ttf";
-              url = "https://fonts.gstatic.com/s/ibmplexsansthailooped/v12/tss6AoJJRAhL3BTrK3r2xxbFhvKfyBB6l7hHT30L_K6vhFk.ttf";
-              hash = "sha256-YLLc/kl9j8H1QV3bi9TjRJ4MdyJX+vopapz+AsC9W9Y=";
+              url = "https://raw.githubusercontent.com/google/fonts/main/ofl/ibmplexsansthailooped/IBMPlexSansThaiLooped-Bold.ttf";
+              hash = "sha256-31PFx5S5EPaLuPMHWmyb9ZJhw62WS9K+Dd/xvUx5x6k=";
             }
           ];
         };
