@@ -2,9 +2,11 @@
 - name: Install Noctalia suite packages
   community.general.pacman:
     name:
+      - adw-gtk-theme
       - greetd
       - noctalia
       - noctalia-greeter
+      - nwg-look
       - umbriel
       - xwayland-satellite
     state: present

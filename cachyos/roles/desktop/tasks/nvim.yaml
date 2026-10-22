@@ -1,5 +1,5 @@
 ---
-- name: Install Neovim and related packages
+- name: Install Neovim and related packages via pacman
   community.general.pacman:
     name:
       - eza
@@ -14,3 +14,13 @@
       - tree-sitter
     state: present
     update_cache: true
+
+- name: Install Neovim and related packages via yay
+  ansible.builtin.shell: |
+    yay -Syu --noconfirm --needed \
+      nixd \
+      nixfmt
+  become: true
+  become_user: aurbuilder
+  environment:
+    HOME: '/home/aurbuilder'

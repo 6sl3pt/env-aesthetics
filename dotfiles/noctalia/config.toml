@@ -6,9 +6,9 @@ wallpaper_scheme = "m3-content"
 
 [theme.templates]
 enable_builtin_templates   = true
-builtin_ids                = [ "btop", "kitty", "niri", "qt", "umbriel", ]
+builtin_ids                = [ "btop", "gtk3", "gtk4", "kitty", "niri", "qt", "umbriel", ]
 enable_community_templates = true
-community_ids              = [ "discord", "thunderbird", "zen-browser", ]
+community_ids              = [ "discord", "spicetify", "steam", "thunderbird", "zen-browser", ]
 
 [wallpaper]
 enabled   = true
@@ -73,6 +73,9 @@ hide_when_no_unread = true
 
 [widget.session]
 color = "primary"
+
+[widget.tray]
+drawer = true
 
 [widget.workspaces]
 style = "minimal"

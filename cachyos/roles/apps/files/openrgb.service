@@ -1,0 +1,13 @@
+[Unit]
+Description=OpenRGB Custom Boot Color
+After=multi-user.target
+
+[Service]
+Type=oneshot
+User=root
+ExecStartPre=/bin/sleep 2
+ExecStart=/usr/bin/openrgb -c 1f0800
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

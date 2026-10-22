@@ -27,7 +27,7 @@ Roles are primarily divided into two types: `init` and `apps`.
 ### CachyOS Setup
 
 1. Launch installer ISO, configure IPv4 DNS
-1. Install CachyOS with no desktop
+1. Install CachyOS with Limine and no desktop
 1. Setup SSH key and SSH config, then clone git repo
 1. Install Ansible
     ```sh
@@ -37,11 +37,11 @@ Roles are primarily divided into two types: `init` and `apps`.
     ```sh
     sudo ansible-playbook -i inventory.yaml init.yaml -e "target_username=someusername"
     ```
-1. Reboot
 1. Run application playbook
     ```sh
     sudo ansible-playbook -i inventory.yaml apps.yaml
     ```
+1. (Optional) After reboot, enable `i2c-piix4` (AMD) for RAM compatibility with OpenRGB
 
 ## Manual Setup
 
@@ -128,4 +128,34 @@ Application like CachyOS Hello need authentication agent, so installation and se
     ```
 1. Configure DNS on applications
 
+### OpenRGB
 
+OpenRGB may not work properly without this configuration. Note that all `i2c` steps are optional and are only required if you want to control RAM colors
+
+1. Install `openrgb`:
+    ```sh
+    sudo pacman -Syu openrgb
+    ```
+1. OpenRGB must run with root/privileged permissions. For testing, the daemon can be started manually with:
+    ```sh
+    sudo openrgb --server
+    ```
+1. Install and enable `i2c-dev`:
+    ```sh
+    sudo pacman -S i2c-tools
+    sudo modprobe i2c-dev
+    ```
+1. Follow the section below for your specific bootloader
+
+**Limine**
+
+1. Edit bootloader configuration:
+    ```sh
+    sudoedit /boot/limine.conf
+    ```
+1. Append `acpi_enforce_resources=lax` to the `cmdline:` parameter for each CachyOS kernel entry
+1. After rebooting, load the `i2c-piix4` module (for AMD systems) and verify that the SMBus device appears in the list:
+    ```sh
+    sudo modprobe i2c-piix4
+    sudo i2cdetect -l
+    ```

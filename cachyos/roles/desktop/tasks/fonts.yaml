@@ -24,20 +24,20 @@
 
 - name: Download Google Sans Flex
   ansible.builtin.get_url:
-    url: 'https://fonts.gstatic.com/s/googlesansflex/v23/t5svIQcYNIWbFgDgAAzZ34auoVyXkJCOvp3SFWJbN5hF8Ju1x6sKCyp0l9sI40swNJwGpVd4AZzz0v6lJ4qFXNZhGjLvDSkV4W6pGn9C3w.woff2'
-    dest: '/usr/share/fonts/custom/GoogleSansFlex.woff2'
+    url: 'https://raw.githubusercontent.com/google/fonts/main/ofl/googlesansflex/GoogleSansFlex%5BROND%2Copsz%2Cslnt%2Cwdth%2Cwght%5D.ttf'
+    dest: '/usr/share/fonts/custom/GoogleSansFlex.tff'
     mode: '0644'
 
 - name: Download IBM Plex Sans Thai Regular
   ansible.builtin.get_url:
-    url: 'https://fonts.gstatic.com/s/ibmplexsansthai/v11/m8JPje1VVIzcq1HzJq2AEdo2Tj_qvLqMHdYgVcM.woff2'
-    dest: '/usr/share/fonts/custom/IBMPlexSansThai-Regular.woff2'
+    url: 'https://raw.githubusercontent.com/google/fonts/main/ofl/ibmplexsansthai/IBMPlexSansThai-Regular.ttf'
+    dest: '/usr/share/fonts/custom/IBMPlexSansThai-Regular.tff'
     mode: '0644'
 
 - name: Download IBM Plex Sans Thai Bold
   ansible.builtin.get_url:
-    url: 'https://fonts.gstatic.com/s/ibmplexsansthai/v11/m8JMje1VVIzcq1HzJq2AEdo2Tj_qvLqEsvM1fuJHa74.woff2'
-    dest: '/usr/share/fonts/custom/IBMPlexSansThai-Bold.woff2'
+    url: 'https://raw.githubusercontent.com/google/fonts/main/ofl/ibmplexsansthai/IBMPlexSansThai-Bold.ttf'
+    dest: '/usr/share/fonts/custom/IBMPlexSansThai-Bold.tff'
     mode: '0644'
 
 - name: Refresh system font cache

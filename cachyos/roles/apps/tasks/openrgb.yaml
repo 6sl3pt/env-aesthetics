@@ -1,0 +1,46 @@
+---
+- name: Install OpenRGB and related packages via pacman
+  community.general.pacman:
+    name:
+      - i2c-tools
+      - openrgb
+    state: present
+    update_cache: true
+
+- name: Enable i2c-dev module immediately
+  ansible.builtin.modprobe:
+    name: i2c-dev
+    state: present
+
+- name: Persist i2c-dev module on boot
+  ansible.builtin.copy:
+    content: "i2c-dev\n"
+    dest: /etc/modules-load.d/i2c-dev.conf
+    mode: '0644'
+
+- name: Append acpi_enforce_resources=lax to kernel cmdlines
+  ansible.builtin.replace:
+    path: /boot/limine.conf
+    regexp: '^(\s*cmdline:((?!acpi_enforce_resources=lax).)*)$'
+    replace: '\1 acpi_enforce_resources=lax'
+  register: limine_config
+
+- name: Deploy openrgb systemd service file
+  ansible.builtin.copy:
+    src: openrgb.service
+    dest: '/etc/systemd/system/openrgb.service'
+    mode: '0644'
+
+- name: Enable and start openrgb systemd service
+  ansible.builtin.systemd:
+    name: openrgb.service
+    enabled: true
+    state: started
+    daemon_reload: true
+
+- name: Warn user about required reboot if Limine was updated
+  ansible.builtin.debug:
+    msg:
+      'Limine configuration was updated. Please REBOOT your system for the
+      kernel changes to take effect before loading i2c-piix4.'
+  when: limine_config.changed

@@ -1,3 +1,23 @@
 ---
+- name: Install packages via pacman
+  community.general.pacman:
+    name:
+      - fooyin
+    state: present
+    update_cache: true
+
+- name: Install packages via yay
+  ansible.builtin.shell: |
+    yay -Syu --noconfirm --needed \
+      millennium \
+      tuxguitar
+  become: true
+  become_user: aurbuilder
+  environment:
+    HOME: '/home/aurbuilder'
+
+- name: Install and setup OpenRGB
+  ansible.builtin.include_tasks: openrgb.yaml
+
 - name: Install and setup Spicetify
   ansible.builtin.include_tasks: spicetify.yaml

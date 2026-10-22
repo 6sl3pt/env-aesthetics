@@ -9,6 +9,8 @@
       - gnome-disk-utility
       - keepassxc
       - kitty
+      - qt5-wayland
+      - qt6-wayland
       - starship
       - thunderbird
       - tmux

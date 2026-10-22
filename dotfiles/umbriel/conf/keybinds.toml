@@ -8,7 +8,11 @@
 "Mod+Shift+D" = { action = "spawn:vesktop", repeat = false }
 "Mod+E" = { action = "spawn:pcmanfm-qt", repeat = false }
 "Mod+Shift+E" = { action = "spawn:thunderbird", repeat = false }
+"Mod+Shift+G" = { action = "spawn:tuxguitar", repeat = false }
+"Mod+Shift+H" = { action = "spawn:kitty ssh phudit@10.134.20.30", repeat = false }
 "Mod+Shift+M" = { action = "spawn:spotify || spotify-launcher", repeat = false }
+"Mod+Ctrl+M" = { action = "spawn:fooyin", repeat = false }
+"Mod+Shift+S" = { action = "spawn:steam", repeat = false }
 "Mod+Ctrl+T" = { action = "spawn:kitty btop", repeat = false }
 "Mod+Shift+Slash" = { action = "spawn:keepassxc", repeat = false }
 "Mod+Shift+Escape" = { action = "shortcuts-inhibit-toggle", allow_when_inhibited = true, repeat = false }

@@ -12,7 +12,9 @@
   environment:
     HOME: '/home/{{ target_username }}'
   args:
-    creates: '/home/{{ target_username }}/.local/share/spotify-launcher/install/usr/share/spotify'
+    creates:
+      '/home/{{ target_username
+      }}/.local/share/spotify-launcher/install/usr/share/spotify'
 
 - name: Install packages via yay
   ansible.builtin.shell: |
@@ -61,7 +63,7 @@
 - name: Copy spicetify theme
   ansible.builtin.copy:
     src: /tmp/spicetify-comfy/Comfy
-    dest: '/home/{{ target_username }}/.config/spicetify/Themes/Comfy'
+    dest: '/home/{{ target_username }}/.config/spicetify/Themes'
     owner: '{{ target_username }}'
     group: '{{ target_username }}'
     mode: '0644'
