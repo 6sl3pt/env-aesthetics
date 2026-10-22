@@ -1,7 +1,4 @@
 ---
-- name: Configure PolicyKit and systemd agent
-  ansible.builtin.include_tasks: polkit.yaml
-
 - name: Install and configure Noctalia
   ansible.builtin.include_tasks: noctalia.yaml
 

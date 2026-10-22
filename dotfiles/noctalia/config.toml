@@ -20,6 +20,7 @@ path = "/home/phudit/personal/env-aesthetics/background/portejoie-on-the-seine.j
 
 [shell]
 font_family = "Google Sans Flex"
+polkit_agent = true
 
 [shell.greeter_sync]
 auto_sync = true
