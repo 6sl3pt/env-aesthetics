@@ -38,6 +38,19 @@
     state: started
     daemon_reload: true
 
+- name: Deploy openrgb suspend systemd service file
+  ansible.builtin.copy:
+    src: openrgb-suspend.service
+    dest: '/etc/systemd/system/openrgb-suspend.service'
+    mode: '0644'
+
+- name: Enable and start openrgb suspend systemd service
+  ansible.builtin.systemd:
+    name: openrgb-suspend.service
+    enabled: true
+    state: started
+    daemon_reload: true
+
 - name: Warn user about required reboot if Limine was updated
   ansible.builtin.debug:
     msg:

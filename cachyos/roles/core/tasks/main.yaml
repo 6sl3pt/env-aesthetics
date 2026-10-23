@@ -10,6 +10,9 @@
     line: '10.134.20.103  dns.6541333.xyz'
     state: present
 
+- name: Install firmware and config bluetooth dongle
+  ansible.builtin.include_tasks: bluetooth.yaml
+
 - name: Install and config SSH
   ansible.builtin.include_tasks: ssh.yaml
 

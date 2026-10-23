@@ -41,7 +41,9 @@ Roles are primarily divided into two types: `init` and `apps`.
     ```sh
     sudo ansible-playbook -i inventory.yaml apps.yaml
     ```
-1. (Optional) After reboot, enable `i2c-piix4` (AMD) for RAM compatibility with OpenRGB
+1. Optional:
+  - After reboot, enable `i2c-piix4` (AMD) for RAM compatibility with OpenRGB
+  - Check the [Bluetooth](#bluetooth) section to verify if any additional action is needed.
 
 ## Manual Setup
 
@@ -159,3 +161,23 @@ OpenRGB may not work properly without this configuration. Note that all `i2c` st
     sudo modprobe i2c-piix4
     sudo i2cdetect -l
     ```
+
+## Bluetooth
+
+### Orico BTA-508
+
+Since this dongle uses the `RTL8761B` chip, you need to install the appropriate firmware:
+
+```sh
+yay -Syu rtl8761b-firmware
+```
+
+Linux often tries to save power by putting USB devices to sleep, which can cause cheap Realtek Bluetooth dongles to crash or disconnect.
+
+To prevent this, run `sudoedit /etc/modprobe.d/btusb.conf` and add the following configuration:
+
+```sh
+options btusb enable_autosuspend=n
+```
+
+Reboot after setup.

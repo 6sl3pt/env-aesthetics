@@ -1,0 +1,14 @@
+[Unit]
+Description=OpenRGB Custom Suspend Color
+Before=sleep.target
+StopWhenUnneeded=yes
+
+[Service]
+Type=oneshot
+User=root
+RemainAfterExit=yes
+ExecStart=/usr/bin/openrgb -c 000000
+ExecStop=/usr/bin/openrgb -c 1f0800
+
+[Install]
+WantedBy=sleep.target

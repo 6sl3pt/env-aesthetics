@@ -1,0 +1,15 @@
+---
+- name: Install packages via yay
+  ansible.builtin.shell: |
+    yay -Syu --noconfirm --needed \
+      rtl8761b-firmware
+  become: true
+  become_user: aurbuilder
+  environment:
+    HOME: '/home/aurbuilder'
+
+- name: Deploy bluetooth USB configuration file
+  ansible.builtin.copy:
+    src: btusb.conf
+    dest: '/etc/modprobe.d/btusb.conf'
+    mode: '0644'
