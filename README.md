@@ -15,6 +15,7 @@ env-aesthetics
 ├── background # cool backgrounds
 ├── dotfiles   # common application settings
 ├── modules    # Nix configuration for every machine
+├── cachyos    # CachyOS Ansible playbook
 └── windows    # settings for Windows application
 ```
 
@@ -64,7 +65,7 @@ This will prevent Niri from rendering cursor, so that you can use Windows cursor
 
 **Machine Profile**
 
-To select profile, create file `dotfiles/noctalia/profiles/current.toml`, then config the profile import: 
+To select profile, create file `dotfiles/noctalia/profiles/current.toml`, then config the profile import:
 
 ```toml
 [include]
@@ -118,7 +119,7 @@ After apply [WSL NixOS](#nixos) configuration, create shortcut with location:
 
 Make sure it's `wslg.exe` (Wayland) not `wsl.exe`
 
-## Installation
+## NixOS Installation
 
 ### Pre-process
 
@@ -186,3 +187,14 @@ Make sure it's `wslg.exe` (Wayland) not `wsl.exe`
 
     sudo rm -rf /home/nixos
     ```
+
+## CachyOS Installation
+
+Refer to [CachyOS Document](/cachyos/README.md)
+
+While I use NixOS for development settings, my gaming desktop runs CachyOS directly.
+That way, I don't have to wait around for community updates on `nixpkgs` whenever a new gaming kernel or compatibility patch drops,
+meaning I get the latest performance tweaks and hardware fixes instantly without any lag.
+
+It also saves my time. Instead of wrestling with complex configurations or troubleshooting gaming-stack breakages on Nix,
+CachyOS just gives me a fast, out-of-the-box setup that lets me jump straight into gaming without the maintenance overhead.
