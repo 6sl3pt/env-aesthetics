@@ -3,6 +3,7 @@ mode             = "dark"
 shell_mode       = "follow"
 source           = "wallpaper"
 wallpaper_scheme = "m3-content"
+transition = [ "disc", "fade", "wipe", "zoom", ]
 
 [theme.templates]
 enable_builtin_templates   = true
@@ -21,6 +22,7 @@ path = "/home/phudit/personal/env-aesthetics/background/portejoie-on-the-seine.j
 [shell]
 font_family = "Google Sans Flex"
 polkit_agent = true
+clipboard_confirm_clear_history = false
 
 [shell.greeter_sync]
 auto_sync = true

@@ -12,6 +12,7 @@
       - npm
       - ripgrep
       - tree-sitter
+      - wl-clipboard
     state: present
     update_cache: true
 

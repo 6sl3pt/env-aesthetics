@@ -18,9 +18,10 @@
 "Mod+Shift+Escape" = { action = "shortcuts-inhibit-toggle", allow_when_inhibited = true, repeat = false }
 
 # Noctalia specific
-"Mod+Shift+C" = "spawn:noctalia msg panel-toggle control-center calendar"
+"Mod+C" = "spawn:noctalia msg panel-toggle control-center calendar"
 "Mod+D" = "spawn:noctalia msg panel-toggle launcher"
 "Mod+S" = "spawn:noctalia msg settings-toggle"
+"Mod+V" = "spawn:noctalia msg panel-toggle clipboard"
 "Mod+W" = "spawn:noctalia msg panel-toggle wallpaper"
 "Mod+Escape" = "spawn:noctalia msg panel-toggle session"
 
