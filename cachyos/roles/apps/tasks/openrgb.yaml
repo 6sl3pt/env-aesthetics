@@ -12,18 +12,21 @@
     name: i2c-dev
     state: present
 
-- name: Persist i2c-dev module on boot
+- name: Persist i2c modules on boot
   ansible.builtin.copy:
-    content: "i2c-dev\n"
-    dest: /etc/modules-load.d/i2c-dev.conf
+    content: "i2c-dev\ni2c-piix4"
+    dest: /etc/modules-load.d/i2c.conf
     mode: '0644'
 
 - name: Append acpi_enforce_resources=lax to kernel cmdlines
   ansible.builtin.replace:
-    path: /boot/limine.conf
-    regexp: '^(\s*cmdline:((?!acpi_enforce_resources=lax).)*)$'
-    replace: '\1 acpi_enforce_resources=lax'
+    path: /boot/default/limine
+    regexp: '^(KERNEL_CMDLINE\[[^\]]+\]\+\=")(?![^"]*\bacpi_enforce_resources=lax\b)([^"]*)(")'
+    replace: '\1\2 acpi_enforce_resources=lax\3'
   register: limine_config
+
+- name: Apply bootloader configuration
+  ansible.builtin.command: sudo limine-mkinitcpi
 
 - name: Deploy openrgb systemd service file
   ansible.builtin.copy:

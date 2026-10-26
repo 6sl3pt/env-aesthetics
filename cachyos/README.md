@@ -42,7 +42,9 @@ Roles are primarily divided into two types: `init` and `apps`.
     sudo ansible-playbook -i inventory.yaml apps.yaml
     ```
 1. Optional:
-  - After reboot, enable `i2c-piix4` (AMD) for RAM compatibility with OpenRGB
+  - OpenRGB
+    - Mainboard LED count setting is required, to setup `root` configuration, `su` then `openrgb`, the prompt for LED count input should pop-up
+    - After reboot, enable `i2c-piix4` (AMD) for RAM compatibility with OpenRGB
   - Check the [Bluetooth](#bluetooth) section to verify if any additional action is needed.
 
 ## Manual Setup
@@ -153,9 +155,13 @@ OpenRGB may not work properly without this configuration. Note that all `i2c` st
 
 1. Edit bootloader configuration:
     ```sh
-    sudoedit /boot/limine.conf
+    sudoedit /etc/default/limine
     ```
-1. Append `acpi_enforce_resources=lax` to the `cmdline:` parameter for each CachyOS kernel entry
+1. Append `acpi_enforce_resources=lax` to the `KERNEL_CMDLINE` variable for each CachyOS kernel entry
+1. Apply change to regenerate images and update the Limine entries
+    ```sh
+    sudo limine-mkinitcpio
+    ```
 1. After rebooting, load the `i2c-piix4` module (for AMD systems) and verify that the SMBus device appears in the list:
     ```sh
     sudo modprobe i2c-piix4
