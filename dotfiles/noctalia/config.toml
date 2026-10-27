@@ -62,6 +62,16 @@ start = [
 [battery]
 warning_threshold = 20
 
+[idle.behavior.lock]
+timeout = 600
+action = "lock"
+enabled = true
+
+[idle.behavior.screen-off]
+timeout = 660
+action = "screen_off"
+enabled = true
+
 [widget.clock]
 format = "{:%A} {:%H:%M}"
 
