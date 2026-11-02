@@ -1,0 +1,121 @@
+text: &text '#d4be98'
+overlay: &overlay '#45403d'
+muted: &muted '#7c6f64'
+red: &red '#ea6962'
+
+blue: &blue '#7daea3'
+yellow: &yellow '#d8a657'
+green: &green '#a9b665'
+pink: &pink '#d3869b'
+orange: &orange '#e78a4e'
+
+# Skin...
+k9s:
+  # General K9s styles
+  body:
+    fgColor: *text
+    bgColor: default
+    logoColor: *yellow
+
+  # Command prompt styles
+  prompt:
+    fgColor: *text
+    bgColor: default
+    suggestColor: *green
+    border:
+      command: *orange
+      default: *blue
+
+  # ClusterInfoView styles.
+  info:
+    fgColor: *blue
+    sectionColor: *text
+
+  # Dialog styles.
+  dialog:
+    fgColor: *text
+    bgColor: default
+    buttonFgColor: *text
+    buttonBgColor: *green
+    buttonFocusFgColor: *yellow
+    buttonFocusBgColor: *green
+    labelFgColor: *yellow
+    fieldFgColor: *text
+
+  frame:
+    # Borders styles.
+    border:
+      fgColor: *overlay
+      focusColor: *overlay
+    menu:
+      fgColor: *text
+      keyColor: *green
+      numKeyColor: *green # Used for favorite namespaces
+
+    # CrumbView attributes for history navigation.
+    crumbs:
+      fgColor: *text
+      bgColor: *overlay
+      activeColor: *overlay
+
+    # Resource status and update styles
+    status:
+      newColor: *green
+      modifyColor: *red
+      addColor: *blue
+      errorColor: *pink
+      highlightcolor: *yellow
+      killColor: *muted
+      completedColor: *muted
+
+    # Border title styles.
+    title:
+      fgColor: *text
+      bgColor: *overlay
+      highlightColor: *yellow
+      counterColor: *green
+      filterColor: *green
+  views:
+    # Charts skins...
+    charts:
+      bgColor: default
+      defaultDialColors:
+        - *green
+        - *pink
+      defaultChartColors:
+        - *green
+        - *pink
+
+    # TableView attributes.
+    table:
+      fgColor: *text
+      bgColor: default
+
+      # Header row styles.
+      header:
+        fgColor: *text
+        bgColor: default
+        sorterColor: *red
+
+    # Xray view attributes.
+    xray:
+      fgColor: *text
+      bgColor: default
+      cursorColor: *overlay
+      graphicColor: *green
+      showIcons: false
+
+    # YAML info styles.
+    yaml:
+      keyColor: *green
+      colonColor: *green
+      valueColor: *text
+
+    # Logs styles.
+    logs:
+      fgColor: *text
+      bgColor: default
+
+      indicator:
+        fgColor: *text
+        bgColor: default

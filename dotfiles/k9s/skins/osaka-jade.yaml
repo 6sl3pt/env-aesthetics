@@ -1,27 +1,26 @@
-text: &text "#c1c497"
-base: &base "#111c18"
-overlay: &overlay "#2e383c"
-muted: &muted "#495156"
-red: &red "#ff5345"
+text: &text '#c1c497'
+overlay: &overlay '#2e383c'
+muted: &muted '#495156'
+red: &red '#ff5345'
 
-blue: &blue "#509475"
-yellow: &yellow "#dfa000"
-green: &green "#549E6A"
-pink: &pink "#d2689c"
-orange: &orange "#459451"
+blue: &blue '#509475'
+yellow: &yellow '#dfa000'
+green: &green '#549E6A'
+pink: &pink '#d2689c'
+orange: &orange '#459451'
 
 # Skin...
 k9s:
   # General K9s styles
   body:
     fgColor: *text
-    bgColor: *base
-    logoColor: *green
+    bgColor: default
+    logoColor: *yellow
 
   # Command prompt styles
   prompt:
     fgColor: *text
-    bgColor: *base
+    bgColor: default
     suggestColor: *green
     border:
       command: *orange
@@ -31,11 +30,11 @@ k9s:
   info:
     fgColor: *blue
     sectionColor: *text
- 
+
   # Dialog styles.
   dialog:
     fgColor: *text
-    bgColor: *base
+    bgColor: default
     buttonFgColor: *text
     buttonBgColor: *green
     buttonFocusFgColor: *yellow
@@ -79,7 +78,6 @@ k9s:
   views:
     # Charts skins...
     charts:
-
       bgColor: default
       defaultDialColors:
         - *green
@@ -91,18 +89,18 @@ k9s:
     # TableView attributes.
     table:
       fgColor: *text
-      bgColor: *base
+      bgColor: default
 
       # Header row styles.
       header:
         fgColor: *text
-        bgColor: *base
+        bgColor: default
         sorterColor: *red
 
     # Xray view attributes.
     xray:
       fgColor: *text
-      bgColor: *base
+      bgColor: default
       cursorColor: *overlay
       graphicColor: *green
       showIcons: false
@@ -116,8 +114,8 @@ k9s:
     # Logs styles.
     logs:
       fgColor: *text
-      bgColor: *base
+      bgColor: default
 
       indicator:
         fgColor: *text
-        bgColor: *base
+        bgColor: default
