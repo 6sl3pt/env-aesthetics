@@ -9,12 +9,12 @@
       - gnome-disk-utility
       - keepassxc
       - kitty
+      - libreoffice-fresh
       - qt5-wayland
       - qt6-wayland
       - starship
       - thunderbird
       - tmux
-      - ttf-cascadia-mono-nerd
       - unzip
       - vesktop-bin
       - vim
@@ -27,6 +27,7 @@
   ansible.builtin.shell: |
     yay -Syu --noconfirm --needed \
       bibata-cursor-theme
+      cachyos-downgrade-git
   become: true
   become_user: aurbuilder
   environment:
