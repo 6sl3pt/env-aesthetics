@@ -187,3 +187,86 @@ options btusb enable_autosuspend=n
 ```
 
 Reboot after setup.
+
+## NVIDIA Driver
+
+### Downgrade
+
+Use `nvidia-open-dkms` instead of the prebuilt CachyOS NVIDIA kernel modules.
+DKMS allows the driver to be built against your installed kernels, making it easier to use an older driver version.
+
+1. Install `nvidia-open-dkms` replacing `linux-cachyos-lts-nvidia-open` and `linux-cachyos-nvidia-open`
+    ```sh
+    sudo pacman -S nvidia-open-dkms
+    ```
+
+1. Downgrade the driver, select the same driver version for all relevant packages
+    ```sh
+    sudo cachyos-downgrade nvidia-utils nvidia-settings lib32-nvidia-utils opencl-nvidia lib32-opencl-nvidia nvidia-open-dkms
+    ```
+    Select matching versions to avoid userspace and kernel module version mismatches.
+    Include optional packages such as nvidia-settings and OpenCL only if installed.
+
+1. Build and verify DKMS modules
+    ```sh
+    sudo dkms autoinstall
+    dkms status
+
+    modinfo -F version nvidia
+    ```
+
+1. Rebuild the initramfs
+    ```sh
+    sudo limine-mkinitcpio
+    ```
+
+1. Reboot and verify
+    ```sh
+    nvidia-smi
+    ```
+
+#### 2026-11-03: NVIDIA 610 on Kernel 7.3
+
+NVIDIA 615 has introduced issues in some games. Downgrading to NVIDIA 610 may resolve them.
+However, the standard downgrade procedure above requires an additional step on Linux 7.3 as
+NVIDIA 610.57.04 is incompatible with the updated DMEM API and may fail to compile during the DKMS build.
+
+The following workaround patches `os-interface.c` to address this compatibility issue.
+Apply it before continuing with Step 3 (Build and verify DKMS modules) in the downgrade procedure above.
+
+1. Download the patch
+    ```sh
+    mkdir /tmp/nvidia-patch
+    cd /tmp/nvidia-patch
+
+    curl -fLO https://raw.githubusercontent.com/SoplosLinux/nvidia-patches/main/patches/nvidia-dmem-kernel7.3.patch
+    ```
+
+1. Backup original source
+    ```sh
+    sudo cp /usr/src/nvidia-610.57.04/kernel-open/nvidia/os-interface.c \
+      /usr/src/nvidia-610.57.04/kernel-open/nvidia/os-interface.c.bak
+    ```
+
+1. Test the patch
+    ```sh
+    sudo patch --dry-run -p2 \
+      -d /usr/src/nvidia-610.57.04/kernel-open \
+      < nvidia-dmem-kernel7.3.patch
+    ```
+
+1. Apply the patch
+    ```sh
+    sudo patch -p2 \
+      -d /usr/src/nvidia-610.57.04/kernel-open \
+      < nvidia-dmem-kernel7.3.patch
+    ```
+
+1. Build and install the patched module
+    ```sh
+    sudo dkms build nvidia/610.57.04 -k 7.3.1-1-cachyos
+
+    sudo dkms install nvidia/610.57.04 -k 7.3.1-1-cachyos
+    ```
+
+1. Continue with the remaining steps
